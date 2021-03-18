@@ -50,12 +50,12 @@ public class Main extends Application  {
 	
 	
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage scene) {
 		 pane = new BorderPane();
 		
 		
 		
-		window = primaryStage;
+		window = scene;
 		window.setTitle("Sudoku");
 		
 		 //knöpfe erste seite
