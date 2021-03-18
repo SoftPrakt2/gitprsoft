@@ -144,7 +144,7 @@ public class Main extends Application  {
 	    Button check = new Button("Check");
 	    check.setMinWidth(leftMenu.getPrefWidth());
 	    
-	    Button autosolve = new Button("Auto solve");
+	    Button autosolve = new Button("Autosolve");
 	    autosolve.setMinWidth(leftMenu.getPrefWidth());
 	    
 	    Button create = new Button("Create Game");
