@@ -14,6 +14,10 @@ import javafx.stage.Stage;
 
 public class ConfirmBox {
 	
+	private ConfirmBox() {
+		
+	}
+	
 	
 	//speichert antwort je nach dem welcher knopf gedrückt wird
 	static boolean answer;
