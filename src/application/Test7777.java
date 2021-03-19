@@ -1,5 +1,5 @@
 package application;
 
-public class Test333333 {
+public class Test7777 {
 	
 }
