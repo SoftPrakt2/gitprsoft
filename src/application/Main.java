@@ -15,7 +15,7 @@ import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
-
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 import javafx.scene.layout.VBox;
@@ -59,6 +59,15 @@ public class Main extends Application  {
 	    sudoku = new Button("Sudoku");
 		sudoku.setOnAction(e -> window.setScene(sudokuScene));
 		samurai = new Button("Samurai");
+		
+		BorderPane samuraiPane = new BorderPane();
+		Scene samuraiScene = new Scene(samuraiPane,800,800);
+		samurai.setOnAction(e -> window.setScene(samuraiScene));
+		SamuraiBoard samuraiBoard = new SamuraiBoard();
+		samuraiPane.setCenter(samuraiBoard.getGridPane());
+		
+		
+		
 		freeform = new Button("Freeform");
 		buttonMenu.setSpacing(210);
 		buttonMenu.getChildren().addAll(sudoku,samurai,freeform);
@@ -77,7 +86,7 @@ public class Main extends Application  {
 	
 		Scene mainScene = new Scene(borderPane,600,600);
 		window.setScene(mainScene);
-		mainScene.getStylesheets().add("Design");
+		//mainScene.getStylesheets().add("Design");
 		window.show();
 		
 		
@@ -90,7 +99,12 @@ public class Main extends Application  {
 		
 		
 	    sudokuScene = new Scene(pane,500,500);
-	
+	    sudokuScene.getStylesheets().add("application/sudoku.css");
+	    samuraiScene.getStylesheets().add("application/sudoku.css");
+	    
+	    
+	    
+	    
 	    
 	    	//menü stuff
 	  		//menüleiste
@@ -150,12 +164,7 @@ public class Main extends Application  {
 	    leftMenu.setAlignment(Pos.CENTER_LEFT);
 	    pane.setLeft(leftMenu);
 	    
-	   
-	   
-	    
-
-	    
-	    
+	 
 	    //Hauptmenü Button
 	    VBox backMenu = new VBox();
 	    Button back = new Button("main menu");
