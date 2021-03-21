@@ -74,7 +74,7 @@ public class Main extends Application  {
 		
 		
 		Label welcomeLabel = new Label("Welcome to our Sudoku Game, please choose a gamemode");
-		welcomeLabel.setFont(new Font("Arial",19));
+		welcomeLabel.setFont(new Font("Arial",20));
 		
 		
 	
