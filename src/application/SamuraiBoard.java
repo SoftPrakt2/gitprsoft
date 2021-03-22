@@ -30,7 +30,7 @@ public class SamuraiBoard {
 		
 		PseudoClass right = PseudoClass.getPseudoClass("right");
 	    PseudoClass bottom = PseudoClass.getPseudoClass("bottom");
-	    PseudoClass left = PseudoClass.getPseudoClass("left");
+	   // PseudoClass left = PseudoClass.getPseudoClass("left");
 		
 		for(int spalte = 0; spalte <21; spalte++) {
 			for(int zeile = 0; zeile < 21; zeile++) {

@@ -14,16 +14,14 @@ import javafx.stage.Stage;
 
 public class ConfirmBox {
 	
-	private ConfirmBox() {
-		
-	}
+	
 	
 	
 	//speichert antwort je nach dem welcher knopf gedrückt wird
 	static boolean answer;
 
 		
-		public static boolean display(String title, String message) {
+		public static boolean showPopUp(String title, String message) {
 			Stage window = new Stage();
 			
 			//kann hinteres windows nicht klicken

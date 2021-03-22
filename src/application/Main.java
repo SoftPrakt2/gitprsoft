@@ -27,14 +27,15 @@ public class Main extends Application  {
 	
 	BorderPane pane;
 	
-	Stage window;
+	static Stage window;
 	Button sudoku;
 	Button samurai;
 	Button freeform;
 	
-	Scene sudokuScene;
-	Scene samuraiScene;
+	
+	
 	Scene freeformScene;
+	static Scene mainScene;
 	
 	ToggleButton hint;
 	
@@ -49,26 +50,29 @@ public class Main extends Application  {
 	public void start(Stage scene) {
 		 pane = new BorderPane();
 		
-		
+	
 		
 		window = scene;
 		window.setTitle("Sudoku");
 		
+
 		 //knöpfe erste seite
 	    HBox buttonMenu = new HBox();
 	    sudoku = new Button("Sudoku");
-		sudoku.setOnAction(e -> window.setScene(sudokuScene));
+		
+	    SudokuScene sudokuScene = new SudokuScene();
+	    sudoku.setOnAction(e -> sudokuScene.display());
 		samurai = new Button("Samurai");
 		
-		BorderPane samuraiPane = new BorderPane();
-		Scene samuraiScene = new Scene(samuraiPane,800,800);
-		samurai.setOnAction(e -> window.setScene(samuraiScene));
-		SamuraiBoard samuraiBoard = new SamuraiBoard();
-		samuraiPane.setCenter(samuraiBoard.getGridPane());
+		SamuraiScene samuraiScene = new SamuraiScene();
+		samurai.setOnAction(e -> samuraiScene.display());
 		
 		
 		
+		FreeFormScene freeformscene = new FreeFormScene();
 		freeform = new Button("Freeform");
+		freeform.setOnAction(e -> freeformscene.display());
+		
 		buttonMenu.setSpacing(210);
 		buttonMenu.getChildren().addAll(sudoku,samurai,freeform);
 		
@@ -84,99 +88,13 @@ public class Main extends Application  {
 		
 		
 	
-		Scene mainScene = new Scene(borderPane,600,600);
+		mainScene = new Scene(borderPane,600,600);
 		window.setScene(mainScene);
-		//mainScene.getStylesheets().add("Design");
 		window.show();
 		
 		
-		//sudoku normal seite
-		//spielfeld
-		Playfield sudokuBoard = new Playfield();
-		pane.setCenter(sudokuBoard.getGridPane());
-		
 	
-		
-		
-	    sudokuScene = new Scene(pane,500,500);
-	    sudokuScene.getStylesheets().add("application/sudoku.css");
-	    samuraiScene.getStylesheets().add("application/sudoku.css");
-	    
-	    
-	    
-	    
-	    
-	    	//menü stuff
-	  		//menüleiste
-	  		Menu helpMenu = new Menu("Help");
-	  		//menü items
-	  		helpMenu.getItems().add(new MenuItem("Rules"));
-	  		//menubar
-	  		MenuBar menuBar = new MenuBar();
-	  		menuBar.getMenus().addAll(helpMenu);
-	  		pane.setTop(menuBar);
-	  		
-	  		
-	  	Menu saveMenu = new Menu("Savegame"); 
-	  	MenuItem save = new MenuItem("Save");
-	  	MenuItem load = new MenuItem("Load");
-	  	saveMenu.getItems().addAll(save,load);
-	  	menuBar.getMenus().add(saveMenu);
-	    
-	    
-	  	//Difficulty Menüeintrag	
-	    Menu difficultyMenu = new Menu("Difficulty");
-	    ToggleGroup difficultyToggle = new ToggleGroup();
-	    RadioMenuItem easy = new RadioMenuItem("Easy");
-	    RadioMenuItem medium = new RadioMenuItem("Medium");
-	    RadioMenuItem hard = new RadioMenuItem("Hard");
-	    
-	    easy.setToggleGroup(difficultyToggle);
-	    medium.setToggleGroup(difficultyToggle);
-	    hard.setToggleGroup(difficultyToggle);
-	    difficultyMenu.getItems().addAll(easy, medium, hard);
-	    menuBar.getMenus().add(difficultyMenu);
-	    
-	
-	    
-	
-	    //Buttons
-	    VBox leftMenu = new VBox(5);
-	    leftMenu.setPrefWidth(100);
-	    Button play = new Button("Play");
-	    play.setMinWidth(leftMenu.getPrefWidth());
-	    
-	    hint = new ToggleButton("Hint");
-	    hint.setMinWidth(leftMenu.getPrefWidth());
-	    hint.setOnAction(e -> showHint());
-	    
-	    
-	    Button check = new Button("Check");
-	    check.setMinWidth(leftMenu.getPrefWidth());
-	    
-	    Button autosolve = new Button("Autosolve");
-	    autosolve.setMinWidth(leftMenu.getPrefWidth());
-	    
-	    Button create = new Button("Create Game");
-	    create.setMinWidth(leftMenu.getPrefWidth());
-	    
-	    leftMenu.getChildren().addAll(play, hint,autosolve,create, check);
-	    leftMenu.setAlignment(Pos.CENTER_LEFT);
-	    pane.setLeft(leftMenu);
-	    
 	 
-	    //Hauptmenü Button
-	    VBox backMenu = new VBox();
-	    Button back = new Button("main menu");
-	    back.setOnAction(e -> window.setScene(mainScene));
-	    backMenu.getChildren().add(back);
-	    backMenu.setAlignment(Pos.CENTER);
-	    pane.setBottom(backMenu);
-	    
-	    
-	    
-	    //richtiges schließen des Programms
-	    
 	    window.setOnCloseRequest(e-> {
 			//consume heißt wir führen den schließvorgang fort und es wird nicht immer geschlossen nur wenn yes gedrückt wird
 			e.consume();
@@ -185,35 +103,22 @@ public class Main extends Application  {
 	    
 	}
 	    
-	   private void showHint() {
-		   	HBox hintBox = new HBox(5);
-		    hintBox.setVisible(false);
-		    Label hintLabel = new Label("The next number is: ");
-		    hintBox.getChildren().add(hintLabel);
-		    hintBox.setAlignment(Pos.CENTER_RIGHT);
-		    pane.setRight(hintBox);
-		  
-		   if(hint.isSelected()) {
-			   hintBox.setVisible(true);
-		   }
-	   }
-	
-
-	
-	
-	    
-	    
+	   
 	    private void closeProgram() {
-			Boolean answer = ConfirmBox.display("Closing","Are you sure that you want to close the program?");
-			if(answer == true) {
-			window.close();
-			}
+			Boolean answer = ConfirmBox.showPopUp("Closing","Are you sure that you want to close the program?");
+			if(answer) window.close();
+			
 		}    
 	    
 	    
+	    public static Stage getStage() {
+	    	return window;
+	    }
 	    
 	    
-	    
+	  public static Scene getScene() {
+		  return mainScene;
+	  }
 	    
 	    
 	   
@@ -221,20 +126,3 @@ public class Main extends Application  {
 	
 	
 	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
