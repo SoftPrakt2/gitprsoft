@@ -30,7 +30,7 @@ public abstract class BasicGameScene {
 		    leftMenu.setPrefWidth(100);
 		    Button play = new Button("Play");
 		    play.setMinWidth(leftMenu.getPrefWidth());
-		    play.getStyleClass().add("button1");
+		    play.getStyleClass().add("button2");
 		    
 		    hint = new ToggleButton("Hint");
 		    hint.setMinWidth(leftMenu.getPrefWidth());
