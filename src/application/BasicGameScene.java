@@ -35,7 +35,7 @@ public abstract class BasicGameScene {
 		    hint = new ToggleButton("Hint");
 		    hint.setMinWidth(leftMenu.getPrefWidth());
 		    hint.setOnAction(e -> showHint(pane));
-		    hint.getStyleClass().add("button1");
+		    hint.getStyleClass().add("button2");
 		    
 		    Button check = new Button("Check");
 		    check.setMinWidth(leftMenu.getPrefWidth());
