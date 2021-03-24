@@ -1,5 +1,12 @@
 package application;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+
+import com.sun.javafx.logging.Logger;
+import com.sun.javafx.logging.PlatformLogger.Level;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,28 +20,35 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 
 public abstract class BasicGameScene {
 	
 	static VBox leftMenu;
-	static Button play;
-	static Button check;
+	static Button play = new Button("play");
+	static Button check = new Button("check");
+	static Button manuel = new Button("manuel");
 	static Button autosolve;
+	
+	static long startTime;
 	
 	 static ToggleButton hint;
 	
 	 public abstract void display();
 	
 	public static void createPlayButtons(BorderPane pane) {
-		  leftMenu = new VBox(5);
+		  leftMenu = new VBox(6);
 		    leftMenu.setPrefWidth(100);
-		    Button play = new Button("Play");
+		 
 		    play.setMinWidth(leftMenu.getPrefWidth());
 		    play.getStyleClass().add("button1");
+		   
 		    
 		    hint = new ToggleButton("Hint");
 		    hint.setMinWidth(leftMenu.getPrefWidth());
 		    hint.setOnAction(e -> showHint(pane));
+		    
 		    hint.getStyleClass().add("button2");
 		    
 		    Button check = new Button("Check");
@@ -49,7 +63,32 @@ public abstract class BasicGameScene {
 		    create.getStyleClass().add("button1");
 		    create.setMinWidth(leftMenu.getPrefWidth());
 		    
-		    leftMenu.getChildren().addAll(play, hint,autosolve,create, check);
+		     manuel = new Button("Manuel fill");
+		    manuel.getStyleClass().add("button1");
+		    manuel.setMinWidth(leftMenu.getPrefWidth());
+		    
+		    play.setOnAction(e -> startTime = System.currentTimeMillis());
+		    
+		    
+		    check.setOnAction(e -> {
+		    	Long endtime = System.currentTimeMillis();
+		    	Long differenz = ((endtime -startTime) /1000);
+		    	
+		    	if(differenz < 60) {
+		    	Label timeStop = new Label("Playtime: " +differenz + "s");
+		    	leftMenu.getChildren().addAll(timeStop);
+		    	}
+		    	if(differenz > 60) {
+		    		differenz = differenz/60;
+		    		long sek = differenz % 60;
+		    		Label timeStop2 = new Label("Playtime: " +differenz + "m" + sek +"s");
+			    	leftMenu.getChildren().addAll(timeStop2);
+			    
+		    	}
+		    	
+		    });
+		    
+		    leftMenu.getChildren().addAll(play, hint,autosolve,create, check,manuel);
 		    leftMenu.setAlignment(Pos.CENTER_LEFT);
 		    pane.setLeft(leftMenu);
 	}
@@ -69,6 +108,8 @@ public static void showHint(BorderPane pane) {
 	   }
 	  
    }
+
+
 
 
 
@@ -97,6 +138,11 @@ public static void createMenuBar(BorderPane pane) {
 		hard.setToggleGroup(difficultyToggle);
 		difficultyMenu.getItems().addAll(easy, medium, hard);
 		menuBar.getMenus().add(difficultyMenu);
+		
+		
+		
+		load.setOnAction(e-> openFile());
+          
 }
 
 
@@ -116,7 +162,22 @@ public Button getPlayButton() {
 	return play;
 	
 }
+
+
+
+public static File openFile() {
+	FileChooser chooser = new FileChooser();
+	chooser.setTitle("Choose a Sudoku");
+	File defaultDirectory = new File("d:/sudoku");
+	chooser.setInitialDirectory(defaultDirectory);
+	File selectedFile = chooser.showOpenDialog(Main.getStage());
 	
+	return selectedFile;
+}
+	
+
+	
+
 	
 	
 }

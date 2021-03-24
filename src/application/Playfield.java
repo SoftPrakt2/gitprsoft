@@ -3,6 +3,7 @@ package application;
 import javafx.css.PseudoClass;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -36,11 +37,12 @@ public class Playfield extends GridPane {
         	StackPane cell = new StackPane();
         	cell.getStyleClass().add("cell");
         	
-               SudokuField sudokuField = new SudokuField("0");
+               SudokuField sudokuField = new SudokuField("");
                textFields[blockC][blockRow] = sudokuField;
                cell.pseudoClassStateChanged(right, blockC == 2 || blockC == 5);
                cell.pseudoClassStateChanged(bottom, blockRow == 2 || blockRow == 5);
                 sudokuField.setStyle("-fx-pref-width: 2em;");
+                textFields[blockC][blockRow].setDisable(true);
                 cell.getChildren().add(sudokuField);
                 
                 sudokuBoard.add(cell,blockC,blockRow);
@@ -56,14 +58,25 @@ public class Playfield extends GridPane {
 	}
     
 
-	
-	
-	
-
-	
-	
 	public GridPane getGridPane() {
 		return sudokuBoard;
+	}
+	
+	public void fillOnClick() {
+		for(int i = 0; i<9; i++) {
+			for(int j = 0; j<9; j++) {
+				textFields[i][j].setText("7");
+			}
+		}
+	}
+	
+	
+	public void enableEdit() {
+		for(SudokuField[] cell : textFields) {
+				for(SudokuField cells : cell) {
+					cells.setDisable(false);
+				}
+		}
 	}
 
 }

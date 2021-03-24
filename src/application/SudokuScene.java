@@ -2,6 +2,7 @@ package application;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,10 +19,10 @@ import javafx.stage.Stage;
 
 public class SudokuScene extends BasicGameScene {
 	
-	 static BorderPane pane = new BorderPane();
-	 static Scene sudoku = new Scene(pane,500,500);
+	  BorderPane pane = new BorderPane();
+	  Scene sudoku = new Scene(pane,500,500);
 	 static ToggleButton hint;
-	
+	 static Playfield sudokuBoard;
 
 	
 	public void display() {
@@ -29,23 +30,34 @@ public class SudokuScene extends BasicGameScene {
 		sudoku.getStylesheets().add("application/sudoku.css");
 	
 		
-		Playfield sudokuBoard = new Playfield();
+		sudokuBoard = new Playfield();
 		pane.setCenter(sudokuBoard.getGridPane());
 		
-	
 	    createPlayButtons(pane);
 	    createMenuBar(pane);
 	    createBackButton(pane);
 	   
 	    
-	    Main.getStage().setScene(sudoku);
+	   Main.getStage().setScene(sudoku);
+	    
+	   
+	   
 	
-	}
+	    play.setOnMouseClicked(e ->  {
+	    
+	    	sudokuBoard.fillOnClick();
+	    	
+	    });
+	    
+	    
+	    manuel.setOnMouseClicked(e -> {
+	    System.out.println("hallo");
+	    sudokuBoard.enableEdit();
+	    
+	});
 	
 
-	public static Scene getScene() {
-		return sudoku;
-	}
+
 	
 
 
@@ -55,4 +67,5 @@ public class SudokuScene extends BasicGameScene {
 	
 	
 
+}
 }

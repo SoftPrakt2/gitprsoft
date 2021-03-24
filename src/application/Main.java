@@ -61,7 +61,10 @@ public class Main extends Application  {
 	    sudoku = new Button("Sudoku");
 		
 	    SudokuScene sudokuScene = new SudokuScene();
-	    sudoku.setOnAction(e -> sudokuScene.display());
+	    sudoku.setOnAction(e ->  {
+	    	e.consume();
+	    	sudokuScene.display();
+	    });
 		samurai = new Button("Samurai");
 		
 		SamuraiScene samuraiScene = new SamuraiScene();
