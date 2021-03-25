@@ -28,8 +28,8 @@ public class FreeFormScene extends BasicGameScene {
 
 	//	freeform.getStylesheets().add("application/sudoku.css");
 		
-		Playfield sudokuBoard = new Playfield();
-		pane.setCenter(sudokuBoard.getGridPane());
+		FreeFormBoard freeformBoard = new FreeFormBoard();
+		pane.setCenter(freeformBoard.getGridPane());
 		
 	
 	    createPlayButtons(pane);
