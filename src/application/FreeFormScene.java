@@ -22,8 +22,6 @@ public class FreeFormScene extends BasicGameScene {
 	 static Scene freeform = new Scene(pane,500,500);
 	 static ToggleButton hint;
 	
-
-	
 	public  void display() {
 
 	//	freeform.getStylesheets().add("application/sudoku.css");
@@ -45,13 +43,6 @@ public class FreeFormScene extends BasicGameScene {
 	public static Scene getScene() {
 		return freeform;
 	}
-	
-
-
-	
-	
-	
-	
 	
 
 }
