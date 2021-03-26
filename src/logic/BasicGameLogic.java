@@ -20,11 +20,23 @@ public abstract class BasicGameLogic{
 			return false;
 		}
 	}
-	
 	public abstract boolean checkRows();
 	public abstract boolean checkCols();
 	public abstract boolean checkBoxs();
-
+	
+	
+	public boolean validUser(){
+		if (checkRowsUser() == true && checkColsUser() == true && checkBoxsUser() == true ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public abstract boolean checkRowsUser();
+	public abstract boolean checkColsUser();
+	public abstract boolean checkBoxsUser();
+	
+	
 	public abstract void autofill();
 	
 	public abstract void fill();
@@ -33,5 +45,7 @@ public abstract class BasicGameLogic{
 	
 	public abstract void autosolve();
 	
-	public abstract void printFelder();
+	public abstract void difficulty(int diff);
+	
+	public abstract void printCells();
 }

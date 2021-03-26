@@ -22,7 +22,7 @@ public class SudokuScene extends BasicGameScene {
 	  BorderPane pane = new BorderPane();
 	  Scene sudoku = new Scene(pane,500,500);
 	 static ToggleButton hint;
-	 static Playfield sudokuBoard;
+	 static SudokuBoard sudokuBoard;
 
 	
 	public void display() {
@@ -30,7 +30,7 @@ public class SudokuScene extends BasicGameScene {
 		sudoku.getStylesheets().add("application/sudoku.css");
 	
 		
-		sudokuBoard = new Playfield();
+		sudokuBoard = new SudokuBoard();
 		pane.setCenter(sudokuBoard.getGridPane());
 		
 	    createPlayButtons(pane);
