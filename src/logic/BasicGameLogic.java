@@ -41,6 +41,8 @@ public abstract class BasicGameLogic{
 	
 	public abstract void fill();
 	
+	public abstract void manualSolve();
+	
 	public abstract void hint();
 	
 	public abstract void autosolve();
