@@ -12,15 +12,15 @@ import logic.*;
 
 public class SudokuBoard extends GridPane {
 
-	static GridPane sudokuBoard;
-	static SudokuField[][] textFields = new SudokuField[9][9];
+	 GridPane sudokuBoard;
+	 SudokuField[][] textFields = new SudokuField[9][9];
 
 	public SudokuBoard() {
 		sudokuBoard = new GridPane();
 		createBoard();
 	}
 
-	public static void createBoard() {
+	public void createBoard() {
 		SudokuLogic s = new SudokuLogic(Gamestate.DEFAULT, 0, false);
 
 		s.autofill();

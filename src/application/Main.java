@@ -114,7 +114,7 @@ public class Main extends Application  {
 		}    
 	    
 	    
-	    public static Stage getStage() {
+	    public static  Stage getStage() {
 	    	return window;
 	    }
 	    

@@ -21,8 +21,8 @@ public class SudokuScene extends BasicGameScene {
 	
 	  BorderPane pane = new BorderPane();
 	  Scene sudoku = new Scene(pane,500,500);
-	 static ToggleButton hint;
-	 static SudokuBoard sudokuBoard;
+	  ToggleButton hint;
+	  SudokuBoard sudokuBoard;
 
 	
 	public void display() {

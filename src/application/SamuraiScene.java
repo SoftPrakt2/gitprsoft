@@ -8,9 +8,9 @@ public class SamuraiScene extends BasicGameScene {
 	
 	
 	
-	static BorderPane pane = new BorderPane();
-	 static Scene samurai = new Scene(pane,800,800);
-	 static ToggleButton hint;
+	 BorderPane pane = new BorderPane();
+	  Scene samurai = new Scene(pane,800,800);
+	  ToggleButton hint;
 	 
 
 	

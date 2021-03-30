@@ -11,8 +11,8 @@ import javafx.scene.shape.Line;
 public class SamuraiBoard {
 
 	
-	static GridPane samuraiBoard;
-	static SudokuField[][] textFields = new SudokuField[21][21];
+	 GridPane samuraiBoard;
+	 SudokuField[][] textFields = new SudokuField[21][21];
 	
 	public SamuraiBoard() {
 		samuraiBoard = new GridPane();
@@ -22,7 +22,7 @@ public class SamuraiBoard {
 	
 	
 	
-	public static void createSamurai() {
+	public void createSamurai() {
 		samuraiBoard = new GridPane();
 		samuraiBoard.setPadding(new Insets(5,5,5,5));
 		

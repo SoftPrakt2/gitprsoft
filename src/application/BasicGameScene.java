@@ -25,19 +25,19 @@ import javafx.stage.FileChooser;
 
 public abstract class BasicGameScene {
 	
-	static VBox leftMenu;
-	static Button play = new Button("play");
-	static Button check = new Button("check");
-	static Button manuel = new Button("manuel");
-	static Button autosolve;
+	 VBox leftMenu;
+	 Button play = new Button("play");
+	 Button check = new Button("check");
+	 Button manuel = new Button("manuel");
+	 Button autosolve;
 	
-	static long startTime;
+	 long startTime;
 	
-	 static ToggleButton hint;
+	  ToggleButton hint;
 	
 	 public abstract void display();
 	
-	public static void createPlayButtons(BorderPane pane) {
+	public void createPlayButtons(BorderPane pane) {
 		  leftMenu = new VBox(6);
 		    leftMenu.setPrefWidth(100);
 		 
@@ -94,7 +94,7 @@ public abstract class BasicGameScene {
 	}
 	
 	
-public static void showHint(BorderPane pane) {
+public void showHint(BorderPane pane) {
 		
 	   	HBox hintBox = new HBox(5);
 	    hintBox.setVisible(false);
@@ -113,7 +113,7 @@ public static void showHint(BorderPane pane) {
 
 
 
-public static void createMenuBar(BorderPane pane) {
+public void createMenuBar(BorderPane pane) {
 		Menu helpMenu = new Menu("Help");
 		helpMenu.getItems().add(new MenuItem("Rules"));
 		MenuBar menuBar = new MenuBar();
@@ -146,7 +146,7 @@ public static void createMenuBar(BorderPane pane) {
 }
 
 
-public static void createBackButton(BorderPane pane) {
+public void createBackButton(BorderPane pane) {
 	 VBox backMenu = new VBox();
 	    Button back = new Button("main menu");
 	    Scene main = Main.getScene();
