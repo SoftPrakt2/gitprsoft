@@ -51,7 +51,7 @@ public class SudokuScene extends BasicGameScene {
 	    
 	    
 	    manuel.setOnMouseClicked(e -> {
-	    System.out.println("halllo");
+	    System.out.println("hallo");
 	    sudokuBoard.enableEdit();
 	    
 	});
