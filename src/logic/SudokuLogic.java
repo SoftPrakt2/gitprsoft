@@ -216,152 +216,171 @@ public class SudokuLogic extends BasicGameLogic {
 		int durchlaufe = 100;
 		int universal = 0;
 		boolean isTrueOrFalse;
+		
+		for (int i = 0; i < this.cells.length; i++) {
+            this.cells[i].setValue(this.cells[i].getGuess());
+        }
+		multipleRowCount = 0;
+		globalCount = 0;
+		
 		for (int k = 0; k < this.cells.length; k++) {
 			if (!this.cells[k].getIsReal()) {
 				
 				singleRowCount = 0;
-				multipleRowCount = 0;
-				globalCount = 0;
+				isTrueOrFalse = true;
 				
 				a = (int) (Math.random() * (10 - 1)) + 1;
-
 				this.cells[k].setValue(a);
 				isTrueOrFalse = valid();
+				
 				while (isTrueOrFalse == false) {
 					singleRowCount++;
 					multipleRowCount++;
 					globalCount++;
 					
 					universal++;
+					
 					a = (int) (Math.random() * (10 - 1)) + 1;
 					this.cells[k].setValue(a);
 					isTrueOrFalse = valid();
 
-					if (globalCount > 300 && k < 81) {
+					if (globalCount > 25000 && k < 81) {
 						for (int r = 0; r <= k; r++) {
-							if (!this.cells[k].getIsReal()) {
-								cells[r].setValue(0);
+							if (!this.cells[r].getIsReal()) {
+							cells[r].setValue(0);
 							}
 						}
 						k = 0;
 						globalCount = 0;
-						System.out.println("GLOBAL zurückgesetzt");
+						multipleRowCount = 0;
+						singleRowCount = 0;
+//						System.out.println("GLOBAL zurückgesetzt");
 					}
 					
-					
-					if (multipleRowCount > 200 && k < 27) {
+					if (multipleRowCount > 3000 && k < 27) {
 						for (int r = 0; r <= k; r++) {
 							if (!this.cells[k].getIsReal()) {
 								cells[r].setValue(0);
-							}
+								}
 						}
 						k = 0;
 						multipleRowCount = 0;
-						System.out.println("MultipleRow zurückgesetzt - 1");
+						singleRowCount = 0;
+//						System.out.println("MultipleRow zurückgesetzt - 1");
 					}
-					if (multipleRowCount > 200 && k < 54) {
+					if (multipleRowCount > 3000 && k < 54) {
 						for (int r = 27; r <= k; r++) {
-							if (!this.cells[k].getIsReal()) {
+							if (!this.cells[r].getIsReal()) {
 								cells[r].setValue(0);
-							}
+								}
 						}
 						k = 27;
 						multipleRowCount = 0;
-						System.out.println("MultipleRow zurückgesetzt - 2");
+						singleRowCount = 0;
+//						System.out.println("MultipleRow zurückgesetzt - 2");
 					}
-					if (multipleRowCount > 200 && k < 81) {
+					if (multipleRowCount > 3000 && k < 81) {
 						for (int r = 54; r <= k; r++) {
-							if (!this.cells[k].getIsReal()) {
+							if (!this.cells[r].getIsReal()) {
 								cells[r].setValue(0);
-							}
+								}
 						}
 						k = 54;
 						multipleRowCount = 0;
-						System.out.println("MultipleRow zurückgesetzt - 3");
+						singleRowCount = 0;
+//						System.out.println("MultipleRow zurückgesetzt - 3");
 					}
 
-					if (singleRowCount > durchlaufe && k < 9) {
+					if (singleRowCount == durchlaufe && k < 9) {
 						for (int r = 0; r <= k; r++) {
-							if (!this.cells[k].getIsReal()) {
+							if (!this.cells[r].getIsReal()) {
 								cells[r].setValue(0);
-							}
+								}
 						}
 						k = 0;
-						System.out.println("SingleRow zurückgesetzt - 1");
-					} else if (singleRowCount > durchlaufe && k < 18) {
+						singleRowCount = 0;
+//						System.out.println("SingleRow zurückgesetzt - 1");
+					} else if (singleRowCount == durchlaufe && k < 18) {
 						for (int r = 9; r <= k; r++) {
-							if (!this.cells[k].getIsReal()) {
+							if (!this.cells[r].getIsReal()) {
 								cells[r].setValue(0);
-							}
+								}
 						}
 						k = 9;
-						System.out.println("SingleRow zurückgesetzt - 2");
-					} else if (singleRowCount > durchlaufe && k < 27) {
+						singleRowCount = 0;
+//						System.out.println("SingleRow zurückgesetzt - 2");
+					} else if (singleRowCount == durchlaufe && k < 27) {
 						for (int r = 18; r <= k; r++) {
-							if (!this.cells[k].getIsReal()) {
+							if (!this.cells[r].getIsReal()) {
 								cells[r].setValue(0);
-							}
+								}
 						}
 						k = 18;
-						System.out.println("SingleRow zurückgesetzt - 3");
-					} else if (singleRowCount > durchlaufe && k < 36) {
+						singleRowCount = 0;
+//						System.out.println("SingleRow zurückgesetzt - 3");
+					} else if (singleRowCount == durchlaufe && k < 36) {
 						for (int r = 27; r <= k; r++) {
-							if (!this.cells[k].getIsReal()) {
+							if (!this.cells[r].getIsReal()) {
 								cells[r].setValue(0);
-							}
+								}
 						}
 						k = 27;
-						System.out.println("SingleRow zurückgesetzt - 4");
+						singleRowCount = 0;
+//						System.out.println("SingleRow zurückgesetzt - 4");
 					} else if (singleRowCount > durchlaufe && k < 45) {
 						for (int r = 36; r <= k; r++) {
-							if (!this.cells[k].getIsReal()) {
+							if (!this.cells[r].getIsReal()) {
 								cells[r].setValue(0);
-							}
+								}
 						}
 						k = 36;
-						System.out.println("SingleRow zurückgesetzt");
-					} else if (singleRowCount > durchlaufe && k < 54) {
+//						System.out.println("SingleRow zurückgesetzt - 5");
+					} else if (singleRowCount == durchlaufe && k < 54) {
 						for (int r = 45; r <= k; r++) {
-							if (!this.cells[k].getIsReal()) {
+							if (!this.cells[r].getIsReal()) {
 								cells[r].setValue(0);
-							}
+								}
 						}
 						k = 45;
-						System.out.println("SingleRow zurückgesetzt");
-					} else if (singleRowCount > durchlaufe && k < 63) {
+						singleRowCount = 0;
+//						System.out.println("SingleRow zurückgesetzt - 6");
+					} else if (singleRowCount == durchlaufe && k < 63) {
 						for (int r = 54; r <= k; r++) {
-							if (!this.cells[k].getIsReal()) {
+							if (!this.cells[r].getIsReal()) {
 								cells[r].setValue(0);
-							}
+								}
 						}
 						k = 54;
-						System.out.println("SingleRow zurückgesetzt");
-					} else if (singleRowCount > durchlaufe && k < 72) {
+						singleRowCount = 0;
+//						System.out.println("SingleRow zurückgesetzt - 7");
+					} else if (singleRowCount == durchlaufe && k < 72) {
 						for (int r = 63; r <= k; r++) {
-							if (!this.cells[k].getIsReal()) {
+							if (!this.cells[r].getIsReal()) {
 								cells[r].setValue(0);
-							}
+								}
 						}
 						k = 63;
-						System.out.println("SingleRow zurückgesetzt");
-					} else if (singleRowCount > durchlaufe && k < 81) {
+						singleRowCount = 0;
+//						System.out.println("SingleRow zurückgesetzt - 8");
+					} else if (singleRowCount == durchlaufe && k < 81) {
 						for (int r = 72; r <= k; r++) {
-							if (!this.cells[k].getIsReal()) {
+							if (!this.cells[r].getIsReal()) {
 								cells[r].setValue(0);
-							}
+								}
 						}
 						k = 72;
-						System.out.println("SingleRow zurückgesetzt");
+						singleRowCount = 0;
+//						System.out.println("SingleRow zurückgesetzt - 9");
 					}
 					
-					System.out.println();
-					System.out.println();
-					System.out.println();
-					System.out.println();
-					System.out.println("Global Count = " + globalCount);
-					System.out.println("Multiple Count = " + multipleRowCount);
-					System.out.println("Single Count = " + singleRowCount);
-					printCells();
+//					System.out.println();
+//					System.out.println();
+//					System.out.println();
+//					System.out.println();
+//					System.out.println("Global Count = " + globalCount);
+//					System.out.println("Multiple Count = " + multipleRowCount);
+//					System.out.println("Single Count = " + singleRowCount);
+//					printCells2();
 				}
 			} else {
 				this.cells[k].setValue(this.cells[k].getGuess());
