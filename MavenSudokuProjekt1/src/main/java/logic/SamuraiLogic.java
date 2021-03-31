@@ -272,11 +272,11 @@ public class SamuraiLogic extends BasicGameLogic {
 		
 	}
 
-	@Override
-	public void manualSolve() {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void manualSolve() {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 
 }
