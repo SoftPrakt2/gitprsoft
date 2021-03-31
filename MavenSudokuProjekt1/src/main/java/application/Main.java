@@ -108,7 +108,7 @@ public class Main extends Application  {
 	    
 	   
 	    private void closeProgram() {
-			Boolean answer = ConfirmBox.showPopUp("Closing","Are u sure that you want to close the program?");
+			Boolean answer = ConfirmBox.showPopUp("Closing","Are you sure that you want to close the program?");
 			if(answer) window.close();
 			
 		}    
