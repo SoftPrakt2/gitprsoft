@@ -29,22 +29,7 @@
     <scope>test</scope>
   </dependency>
  
-  
-  <dependency>
-    <groupId>org.openjfx</groupId>
-    <artifactId>javafx</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-   
-</dependency>
-
-
- <dependency>
-    <groupId>MavenSudokuProjekt1</groupId>
-    <artifactId>MavenSudokuProjekt1</artifactId>
-    <version>11</version>
-    <type>pom</type>
-</dependency>
-
+ 
 
 </dependencies>
   
@@ -53,10 +38,10 @@
   
   
   <build>
-    <sourceDirectory>src</sourceDirectory>
+    <sourceDirectory>src/main/java</sourceDirectory>
     <resources>
       <resource>
-        <directory>src</directory>
+        <directory>src/main/java</directory>
         <excludes>
           <exclude>**/*.java</exclude>
         </excludes>
