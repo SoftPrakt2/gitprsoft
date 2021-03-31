@@ -9,6 +9,7 @@ public class SudokuLogic extends BasicGameLogic {
 		this.cells = new Cell[81];
 	}
 
+	//just a test
 	public Cell[] getCells() {
 		return cells;
 	}
