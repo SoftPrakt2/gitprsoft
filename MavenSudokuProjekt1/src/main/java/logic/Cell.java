@@ -19,6 +19,9 @@ public class Cell {
 	
 	// Wert 1 - 9
 	int value;
+	
+	// Manuelle Eingabe
+	boolean isReal;
 
 
 	public Cell(int uid2, int col2, int row2, int box2, int visibility2, int value2) {
@@ -29,6 +32,15 @@ public class Cell {
 		this.box = box2;
 		this.guess = visibility2;
 		this.value = value2;
+		this.isReal = false;
+	}
+	
+	public boolean getIsReal() {
+		return this.isReal;
+	}
+	
+	public void setIsReal(boolean newState) {
+		this.isReal = newState;
 	}
 
 	public int getUid() {
