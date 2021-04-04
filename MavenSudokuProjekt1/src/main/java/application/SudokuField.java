@@ -43,6 +43,15 @@ public class SudokuField extends TextField{
 	 
 	 
 	}
+	
+	public void updateText() {
+		this.textProperty().addListener((observable,oldV,newV) -> 
+		this.setText(newV));
+	};
+		
+		
+		
+	
 
 
 	

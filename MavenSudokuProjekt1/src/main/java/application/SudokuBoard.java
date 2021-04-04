@@ -14,12 +14,17 @@ public class SudokuBoard extends GridPane {
 
 	 GridPane sudokuBoard;
 	 SudokuField[][] textFields = new SudokuField[9][9];
+	 
+	 
+	 
+	 SudokuLogic logic = new SudokuLogic(Gamestate.OPEN,0.0,false);
 
 	public SudokuBoard() {
 		sudokuBoard = new GridPane();
 		createBoard();
 	}
-
+	
+	
 	public void createBoard() {
 		//SudokuLogic s = new SudokuLogic(Gamestate.DEFAULT, 0, false);
 //
@@ -41,7 +46,9 @@ public class SudokuBoard extends GridPane {
 
 		PseudoClass right = PseudoClass.getPseudoClass("right");
 		PseudoClass bottom = PseudoClass.getPseudoClass("bottom");
-
+		
+//		logic.autofill();
+//		logic.fill();
 		for (int blockC = 0; blockC < 9; blockC++) {
 			for (int blockRow = 0; blockRow < 9; blockRow++) {
 				StackPane cell = new StackPane();
@@ -51,8 +58,11 @@ public class SudokuBoard extends GridPane {
 //				if (selectedCell.equals("0")) {
 //					selectedCell = "";
 //				}
-
+						
+						//String i = Integer.toString(logic.cells[blockRow][blockC].getValue());
+					
 				SudokuField sudokuField = new SudokuField("1");
+				
 				textFields[blockC][blockRow] = sudokuField;
 				cell.pseudoClassStateChanged(right, blockC == 2 || blockC == 5);
 
@@ -87,5 +97,18 @@ public class SudokuBoard extends GridPane {
 			}
 		}
 	}
+	
+	public SudokuLogic getLogic() {
+		return logic;
+	}
+	
+	public SudokuField[][] getField() {
+		return textFields;
+	}
+	
+	public void setField(SudokuField[][] textFields) {
+		this.textFields = textFields;
+	}
+	
 
 }

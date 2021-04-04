@@ -40,32 +40,30 @@ public class SudokuScene extends BasicGameScene {
 	    
 	   Main.getStage().setScene(sudoku);
 	    
+	   SudokuController controller = new SudokuController(this);
 	   
-	   
-	
-	    play.setOnMouseClicked(e ->  {
+	  play.setOnAction(controller::playHandler);
+	  manuel.setOnAction(controller::manuelHandler);
+	 autosolve.setOnAction(controller::checkHandler);
 	    
-	    	sudokuBoard.fillOnClick();
-	    	
-	    });
+//	    manuel.setOnMouseClicked(e -> {
+//	    System.out.println("halo");
+//	    sudokuBoard.enableEdit();
+//	    
+//	});
+	
 	    
-	    
-	    manuel.setOnMouseClicked(e -> {
-	    System.out.println("halo");
-	    sudokuBoard.enableEdit();
-	    
-	});
+	}
 	
 
-
-	
-
-
+	    public SudokuBoard getBoard() {
+			return sudokuBoard;
+		}
 	
 	
 	
 	
 	
 
-}
+
 }

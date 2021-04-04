@@ -27,18 +27,18 @@ public abstract class BasicGameScene {
 	
 	 VBox leftMenu;
 	 Button play = new Button("play");
-	 Button check = new Button("check");
+	 Button check;
 	 Button manuel = new Button("manuel");
 	 Button autosolve;
 	
-	 long startTime;
+	  long startTime;
 	
 	  ToggleButton hint;
 	
 	 public abstract void display();
 	
 	public void createPlayButtons(BorderPane pane) {
-		  leftMenu = new VBox(6);
+		  	leftMenu = new VBox(6);
 		    leftMenu.setPrefWidth(100);
 		 
 		    play.setMinWidth(leftMenu.getPrefWidth());
@@ -51,11 +51,11 @@ public abstract class BasicGameScene {
 		    
 		    hint.getStyleClass().add("button2");
 		    
-		    Button check = new Button("Check");
+		    check = new Button("Check");
 		    check.setMinWidth(leftMenu.getPrefWidth());
 		    check.getStyleClass().add("button1");
 		    
-		    Button autosolve = new Button("Autosolve");
+		     autosolve = new Button("Autosolve");
 		    autosolve.setMinWidth(leftMenu.getPrefWidth());
 		    autosolve.getStyleClass().add("button1");
 		    
@@ -67,8 +67,9 @@ public abstract class BasicGameScene {
 		    manuel.getStyleClass().add("button1");
 		    manuel.setMinWidth(leftMenu.getPrefWidth());
 		    
-		    play.setOnAction(e -> startTime = System.currentTimeMillis());
+		  
 		    
+		   
 		    
 		    check.setOnAction(e -> {
 		    	Long endtime = System.currentTimeMillis();
@@ -125,7 +126,15 @@ public void createMenuBar(BorderPane pane) {
 		MenuItem load = new MenuItem("Load");
 		saveMenu.getItems().addAll(save,load);
 		menuBar.getMenus().add(saveMenu);
-
+		
+		Menu overView = new Menu("Overview");
+		MenuItem recently = new MenuItem("Recently Played");
+		overView.getItems().add(recently);
+		menuBar.getMenus().add(overView);
+		overView.setOnAction(e -> {
+			OverviewStage o = new OverviewStage();
+			o.showOverview("Played Games","Played Games");
+		});
 		
 		Menu difficultyMenu = new Menu("Difficulty");
 		ToggleGroup difficultyToggle = new ToggleGroup();
