@@ -30,12 +30,13 @@ public class SudokuController {
 		SudokuField[][] fields = scene.getBoard().getField();
 		
 		logic.autofill();
-		logic.fill(difficulty);
+		logic.fill();
+		logic.difficulty(difficulty);
 
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				
-				String number = Integer.toString(logic.cells[i][j].getValue());
+				String number = Integer.toString(logic.getCells()[i][j].getValue());
 				if(fields[i][j].getText().equals("0")) {
 				fields[i][j].setText(number);
 				}
@@ -44,7 +45,6 @@ public class SudokuController {
 				scene.startTime = System.currentTimeMillis();
 			}
 		}
-		
 	}
 	
 	
@@ -56,7 +56,7 @@ public class SudokuController {
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				
-					if(!logic.cells[i][j].getIsReal())
+					if(!logic.getCells()[i][j].getIsReal())
 					cellArray[i][j].setDisable(false);
 				}
 			}
@@ -98,11 +98,12 @@ public class SudokuController {
 		}
 				
 				logic.autofill();
-				logic.fill(difficulty);
+				logic.fill();
+				logic.difficulty(difficulty);
 		
 				for (int x = 0; x < 9; x++) {
 					for (int y = 0; y < 9; y++) {
-				String number = Integer.toString(logic.cells[x][y].getValue());
+				String number = Integer.toString(logic.getCells()[x][y].getValue());
 					if(cellArray[x][y].getText().equals("0")) {
 						cellArray[x][y].setText(number);
 					

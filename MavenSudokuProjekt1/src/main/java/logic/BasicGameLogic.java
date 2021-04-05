@@ -65,10 +65,10 @@ public abstract class BasicGameLogic{
 		this.isCorrect = isCorrect;
 	}
 	
-	public abstract boolean valid(int row, int col, int guess);
 	public abstract boolean checkRow(int row, int guess);
 	public abstract boolean checkCol(int col, int guess);
 	public abstract boolean checkBox(int row, int col, int guess);
+	public abstract boolean valid(int row, int col, int guess);
 	
 	
 	public boolean validUser(){
@@ -78,20 +78,18 @@ public abstract class BasicGameLogic{
 			return false;
 		}
 	}
+	
 	public abstract boolean checkRowsUser();
 	public abstract boolean checkColsUser();
 	public abstract boolean checkBoxsUser();
-	
 	
 	public abstract void autofill();
 	
 	public abstract void fill();
 	
-	public abstract boolean manualSolve();
-	
 	public abstract void hint();
 	
-	public abstract void autosolve();
+	public abstract boolean autoSolve();
 	
 	public abstract void difficulty(int diff);
 	

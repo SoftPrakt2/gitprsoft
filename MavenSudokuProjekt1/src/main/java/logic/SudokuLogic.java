@@ -2,7 +2,7 @@ package logic;
 
 public class SudokuLogic extends BasicGameLogic {
 
-	public Cell [][] cells;
+	private Cell [][] cells;
 
 	public SudokuLogic(Gamestate gamestate, double timer, boolean isCorrect) {
 		super(gamestate, timer, isCorrect);
@@ -120,7 +120,7 @@ public class SudokuLogic extends BasicGameLogic {
 		return true;
 	}
 
-	public void fill(int difficulty) {
+	public void fill() {
 		int a;
 		int counter;
 		int globalCounter = 0;
@@ -157,26 +157,12 @@ public class SudokuLogic extends BasicGameLogic {
 				}
 			}
 		}
-		System.out.println("Global Counter = " + globalCounter);
-		
-		
-		
-		for(int i = 0; i < this.cells.length;i++) {
-			for(int j = 0; j < this.cells[i].length;j++) {
-			long random =(int) (Math.random()*10)+1;
-			if(random <= difficulty) {
-				this.cells[i][j].setIsReal(true);
-			} else {
-				this.cells[i][j].setValue(0);
-			}
-			}
-		}
-		
+		System.out.println("Global Counter = " + globalCounter);	
 	}
 	
 	static int counter = 0;
 	
-	public boolean manualSolve() {	
+	public boolean autoSolve() {	
 		for(int i = 0; i < this.cells.length; i++) {
 			for(int j = 0; j < this.cells[i].length; j++) {
 				if(this.cells[i][j].getValue() == 0) {
@@ -184,7 +170,7 @@ public class SudokuLogic extends BasicGameLogic {
 						counter++;
 						if(valid(i, j, y + 1)) {
 							this.cells[i][j].setValue(y + 1);
-							if(manualSolve() == true) {
+							if(autoSolve() == true) {
 								return true;
 							}
 							else {
@@ -300,6 +286,17 @@ public class SudokuLogic extends BasicGameLogic {
 //				this.cells[i].setGuess(makeVisible);
 //			}
 //		}
+		
+		for(int i = 0; i < this.cells.length;i++) {
+			for(int j = 0; j < this.cells[i].length;j++) {
+			long random =(int) (Math.random()*10)+1;
+			if(random <= diff) {
+				this.cells[i][j].setIsReal(true);
+			} else {
+				this.cells[i][j].setValue(0);
+			}
+			}
+		}
 	}
 
 	public void setCell(int col, int row, int guess) {
@@ -321,17 +318,4 @@ public class SudokuLogic extends BasicGameLogic {
 			}
 		}
 	}
-
-	@Override
-	public void autosolve() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void fill() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

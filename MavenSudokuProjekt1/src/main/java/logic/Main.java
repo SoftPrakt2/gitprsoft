@@ -8,7 +8,7 @@ public class Main {
 		SudokuLogic test2 = new SudokuLogic(Gamestate.OPEN, 0.0, false);
 		
 		test.autofill();
-		test.printCells2();
+		test.printCells();
 		
 //		x.setCell(int col, int row, int guess);
 		test.setCell(0, 1, 1);
@@ -64,6 +64,6 @@ public class Main {
 		
 //		test2.autofill();
 		test.manualSolve();
-		test.printCells2();
+		test.printCells();
 	}
 }
