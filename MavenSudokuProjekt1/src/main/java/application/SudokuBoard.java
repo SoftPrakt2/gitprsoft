@@ -20,7 +20,7 @@ public class SudokuBoard extends GridPane {
 	 SudokuLogic logic = new SudokuLogic(Gamestate.OPEN,0.0,false);
 
 	public SudokuBoard() {
-		sudokuBoard = new GridPane();
+	//	sudokuBoard = new GridPane();
 		createBoard();
 	}
 	
@@ -61,7 +61,7 @@ public class SudokuBoard extends GridPane {
 						
 						//String i = Integer.toString(logic.cells[blockRow][blockC].getValue());
 					
-				SudokuField sudokuField = new SudokuField("1");
+				SudokuField sudokuField = new SudokuField("0");
 				
 				textFields[blockC][blockRow] = sudokuField;
 				cell.pseudoClassStateChanged(right, blockC == 2 || blockC == 5);

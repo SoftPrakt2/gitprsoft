@@ -94,3 +94,10 @@
     -fx-pref-height: 2em ;
 }
 
+
+.text-field:disabled, .text-field:disabled > * {
+	-fx-opacity: 1.0;
+}
+
+
+

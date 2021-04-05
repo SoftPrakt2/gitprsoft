@@ -110,37 +110,56 @@ public void showHint(BorderPane pane) {
 	  
    }
 
+	
+Menu helpMenu;
+MenuBar menuBar;	
+MenuItem save;
+MenuItem load;
+Menu overView;
+Menu saveMenu;
+MenuItem newGameItem;
+Menu newGame;
+MenuItem recently;
+Menu difficultyMenu;
+ToggleGroup difficultyToggle;
 
+RadioMenuItem easy;
+RadioMenuItem medium;
+RadioMenuItem hard;
+OverviewStage o;
 
+Label label = new Label("easy");
 
 
 public void createMenuBar(BorderPane pane) {
-		Menu helpMenu = new Menu("Help");
+		helpMenu = new Menu("Help");
 		helpMenu.getItems().add(new MenuItem("Rules"));
-		MenuBar menuBar = new MenuBar();
+		menuBar = new MenuBar();
 		menuBar.getMenus().addAll(helpMenu);
 		pane.setTop(menuBar);
 		
-		Menu saveMenu = new Menu("Savegame"); 
-		MenuItem save = new MenuItem("Save");
-		MenuItem load = new MenuItem("Load");
+		saveMenu = new Menu("Savegame"); 
+		save = new MenuItem("Save");
+		load = new MenuItem("Load");
 		saveMenu.getItems().addAll(save,load);
 		menuBar.getMenus().add(saveMenu);
-		
-		Menu overView = new Menu("Overview");
-		MenuItem recently = new MenuItem("Recently Played");
+		newGame = new Menu("New Game");
+		newGameItem = new MenuItem("Restart");
+		newGame.getItems().add(newGameItem);
+		overView = new Menu("Overview");
+		recently = new MenuItem("Recently Played");
 		overView.getItems().add(recently);
 		menuBar.getMenus().add(overView);
-		overView.setOnAction(e -> {
-			OverviewStage o = new OverviewStage();
+		recently.setOnAction(e -> {
+			 o = new OverviewStage();
 			o.showOverview("Played Games","Played Games");
 		});
 		
-		Menu difficultyMenu = new Menu("Difficulty");
-		ToggleGroup difficultyToggle = new ToggleGroup();
-		RadioMenuItem easy = new RadioMenuItem("Easy");
-		RadioMenuItem medium = new RadioMenuItem("Medium");
-		RadioMenuItem hard = new RadioMenuItem("Hard");
+		difficultyMenu = new Menu("Difficulty");
+		 difficultyToggle = new ToggleGroup();
+		 easy = new RadioMenuItem(label.getText());
+		 medium = new RadioMenuItem("Medium");
+		 hard = new RadioMenuItem("Hard");
 
 		easy.setToggleGroup(difficultyToggle);
 		medium.setToggleGroup(difficultyToggle);
@@ -148,6 +167,7 @@ public void createMenuBar(BorderPane pane) {
 		difficultyMenu.getItems().addAll(easy, medium, hard);
 		menuBar.getMenus().add(difficultyMenu);
 		
+		menuBar.getMenus().add(newGame);
 		
 		
 		load.setOnAction(e-> openFile());

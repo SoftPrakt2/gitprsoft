@@ -38,13 +38,22 @@ public class SudokuScene extends BasicGameScene {
 	    createBackButton(pane);
 	   
 	    
-	   Main.getStage().setScene(sudoku);
+	   
 	    
 	   SudokuController controller = new SudokuController(this);
 	   
 	  play.setOnAction(controller::playHandler);
 	  manuel.setOnAction(controller::manuelHandler);
-	 autosolve.setOnAction(controller::checkHandler);
+	  autosolve.setOnAction(controller::checkHandler);
+	  
+	 
+	  easy.setOnAction(controller::easyHandler);
+	  medium.setOnAction(controller::mediumHandler);
+	  hard.setOnAction(controller::hardHandler);
+	  
+	  newGame.setOnAction(controller::newGameHandler);
+	  
+	  save.setOnAction(controller::saveHandler);
 	    
 //	    manuel.setOnMouseClicked(e -> {
 //	    System.out.println("halo");
@@ -52,10 +61,10 @@ public class SudokuScene extends BasicGameScene {
 //	    
 //	});
 	
-	    
+	  Main.getStage().setScene(sudoku);
 	}
 	
-
+	
 	    public SudokuBoard getBoard() {
 			return sudokuBoard;
 		}
