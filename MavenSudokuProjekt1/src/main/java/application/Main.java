@@ -58,7 +58,7 @@ public class Main extends Application  {
 
 		 //knöpfe erste seite
 	    HBox buttonMenu = new HBox();
-	    sudoku = new Button("Sudoku");
+	    sudoku = new Button("Suduku");
 		
 	    SudokuScene sudokuScene = new SudokuScene();
 	    sudoku.setOnAction(e ->  {
