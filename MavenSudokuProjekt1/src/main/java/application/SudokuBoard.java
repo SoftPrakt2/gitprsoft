@@ -54,7 +54,6 @@ public class SudokuBoard extends GridPane {
 				StackPane cell = new StackPane();
 				cell.getStyleClass().add("cell");
 
-
 					
 				SudokuField sudokuField = new SudokuField("0");
 				
