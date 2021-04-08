@@ -1,5 +1,7 @@
 package logic;
 
+import application.SudokuField;
+
 public class SudokuLogic extends BasicGameLogic {
 
 	private Cell [][] cells;
@@ -61,7 +63,7 @@ public class SudokuLogic extends BasicGameLogic {
 	}
 
 	@Override
-	public boolean checkRowsUser() {
+//	public boolean checkRowsUser() {
 //		String compare = "";
 //		for (int k = 1; k <= 9; k++) {
 //			for (int i = 0; i < this.cells.length; i++) {
@@ -77,8 +79,8 @@ public class SudokuLogic extends BasicGameLogic {
 //			}
 //			compare = "";
 //		}
-		return true;
-	}
+	//	return true;
+//	}
 
 	@Override
 	public boolean checkBoxsUser() {
@@ -101,7 +103,7 @@ public class SudokuLogic extends BasicGameLogic {
 	}
 
 	@Override
-	public boolean checkColsUser() {
+	//public boolean checkColsUser() {
 //		String compare = "";
 //		for (int k = 1; k <= 9; k++) {
 //			for (int i = 0; i < this.cells.length; i++) {
@@ -117,9 +119,9 @@ public class SudokuLogic extends BasicGameLogic {
 //			}
 //			compare = "";
 //		}
-		return true;
-	}
-
+//		return true;
+//	}
+	//erstellt generell sudoku spiel mit richtigen ziffern
 	public void fill() {
 		int a;
 		int counter;
@@ -146,7 +148,7 @@ public class SudokuLogic extends BasicGameLogic {
 						}
 						if(counter == 100) {
 							for(int y = 0; y < cells[i].length; y++) {
-								this.cells[i][y].setValue(0);;
+								this.cells[i][y].setValue(0);
 							}
 							j = -1;
 							counter = 0;
@@ -162,6 +164,7 @@ public class SudokuLogic extends BasicGameLogic {
 	
 	static int counter = 0;
 	
+	//löst restliches sudoku automatisch
 	public boolean autoSolve() {	
 		for(int i = 0; i < this.cells.length; i++) {
 			for(int j = 0; j < this.cells[i].length; j++) {
@@ -174,7 +177,7 @@ public class SudokuLogic extends BasicGameLogic {
 								return true;
 							}
 							else {
-								this.cells[i][j].setValue(0);;
+								this.cells[i][j].setValue(0);
 							}
 						}
 					}
@@ -318,4 +321,52 @@ public class SudokuLogic extends BasicGameLogic {
 			}
 		}
 	}
+	
+	
+		//updatet den stand des sudoku arrays auf den stand des logik arrays, nach autosolve immer?
+	public void connectArrays(SudokuField[][] sudokuField) {
+		for(int i = 0; i < sudokuField.length; i++) {
+			for(int j = 0; j < sudokuField[i].length;j++) {
+			sudokuField[i][j].setText(Integer.toString(cells[j][i].getValue()));
+		}
+	}	
+	}
+	
+	public boolean compareResult(SudokuField[][] sudokuField) {
+			boolean result = true;
+			this.autoSolve();
+		
+			for(int i = 0; i < sudokuField.length; i++) {
+				for(int j = 0; j < sudokuField[i].length;j++) {
+						if(!sudokuField[i][j].getText().equals(Integer.toString(cells[j][i].getValue())) && !sudokuField[i][j].getText().equals("0")) {
+						sudokuField[i][j].setStyle("-fx-text-fill: red");
+						result = false;
+						}
+						else {
+							sudokuField[i][j].setStyle("-fx-text-fill: green");
+						}
+			}
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

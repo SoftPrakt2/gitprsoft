@@ -28,8 +28,9 @@ public abstract class BasicGameScene {
 	 VBox leftMenu;
 	 Button play = new Button("play");
 	 Button check;
-	 Button manuel = new Button("manuel");
+	 Button owngame;
 	 Button autosolve;
+	 Button create;
 	
 	  long startTime;
 	
@@ -59,37 +60,37 @@ public abstract class BasicGameScene {
 		    autosolve.setMinWidth(leftMenu.getPrefWidth());
 		    autosolve.getStyleClass().add("button1");
 		    
-		    Button create = new Button("Create Game");
+		    create = new Button("Create Game");
 		    create.getStyleClass().add("button1");
 		    create.setMinWidth(leftMenu.getPrefWidth());
 		    
-		     manuel = new Button("Manuel fill");
-		    manuel.getStyleClass().add("button1");
-		    manuel.setMinWidth(leftMenu.getPrefWidth());
+		    owngame = new Button("Custom Game");
+		    owngame.getStyleClass().add("button1");
+		    owngame.setMinWidth(leftMenu.getPrefWidth());
 		    
 		  
 		    
 		   
 		    
-		    check.setOnAction(e -> {
-		    	Long endtime = System.currentTimeMillis();
-		    	Long differenz = ((endtime -startTime) /1000);
-		    	
-		    	if(differenz < 60) {
-		    	Label timeStop = new Label("Playtime: " +differenz + "s");
-		    	leftMenu.getChildren().addAll(timeStop);
-		    	}
-		    	if(differenz > 60) {
-		    		differenz = differenz/60;
-		    		long sek = differenz % 60;
-		    		Label timeStop2 = new Label("Playtime: " +differenz + "m" + sek +"s");
-			    	leftMenu.getChildren().addAll(timeStop2);
-			    
-		    	}
-		    	
-		    });
+//		    check.setOnAction(e -> {
+//		    	Long endtime = System.currentTimeMillis();
+//		    	Long differenz = ((endtime -startTime) /1000);
+//		    	
+//		    	if(differenz < 60) {
+//		    	Label timeStop = new Label("Playtime: " +differenz + "s");
+//		    	leftMenu.getChildren().addAll(timeStop);
+//		    	}
+//		    	if(differenz > 60) {
+//		    		differenz = differenz/60;
+//		    		long sek = differenz % 60;
+//		    		Label timeStop2 = new Label("Playtime: " +differenz + "m" + sek +"s");
+//			    	leftMenu.getChildren().addAll(timeStop2);
+//			    
+//		    	}
+//		    	
+//		    });
 		    
-		    leftMenu.getChildren().addAll(play, hint,autosolve,create, check,manuel);
+		    leftMenu.getChildren().addAll(play, hint,autosolve,create, check,owngame);
 		    leftMenu.setAlignment(Pos.CENTER_LEFT);
 		    pane.setLeft(leftMenu);
 	}
@@ -162,6 +163,8 @@ public void createMenuBar(BorderPane pane) {
 		 hard = new RadioMenuItem("Hard");
 
 		easy.setToggleGroup(difficultyToggle);
+		easy.setSelected(true);
+		
 		medium.setToggleGroup(difficultyToggle);
 		hard.setToggleGroup(difficultyToggle);
 		difficultyMenu.getItems().addAll(easy, medium, hard);

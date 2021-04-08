@@ -17,7 +17,7 @@ public class SudokuController {
 	
 	SudokuScene scene;
 	SudokuLogic logic = new SudokuLogic(Gamestate.OPEN,0.0,false);
-	 int difficulty = 0;
+	static int difficulty = 0;
 	
 	public SudokuController(SudokuScene scene) {
 		this.scene = scene;
@@ -25,30 +25,36 @@ public class SudokuController {
 	
 	
 	
-	public void playHandler(ActionEvent e) {
+	public void createGameHandler(ActionEvent e) {
 		
 		SudokuField[][] fields = scene.getBoard().getField();
 		
 		logic.autofill();
 		logic.fill();
 		logic.difficulty(difficulty);
+		
+	
 
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				
-				String number = Integer.toString(logic.getCells()[i][j].getValue());
+				String number = Integer.toString(logic.getCells()[j][i].getValue());
 				if(fields[i][j].getText().equals("0")) {
 				fields[i][j].setText(number);
 				}
-				System.out.println(fields[i][j].getText());
 				
 				scene.startTime = System.currentTimeMillis();
 			}
 		}
+		
+		logic.autoSolve();
+		logic.printCells();
+		
+		
 	}
 	
 	
-	public void manuelHandler(ActionEvent e) {
+	public void enableEditHandler(ActionEvent e) {
 		
 		SudokuField[][] cellArray = scene.getBoard().getField();
 	
@@ -56,24 +62,30 @@ public class SudokuController {
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				
-					if(!logic.getCells()[i][j].getIsReal())
+					if(!logic.getCells()[j][i].getIsReal())
 					cellArray[i][j].setDisable(false);
 				}
 			}
 	}
 		
-	public void checkHandler(ActionEvent e) {
-		SudokuField[][] fields = scene.getBoard().getField();
+//	public void checkHandler(ActionEvent e) {
+//		SudokuField[][] fields = scene.getBoard().getField();
+//		System.out.println();
 		
-		for (int i = 0; i < 9; i++) {
-			for (int j = 0; j < 9; j++) {
-				System.out.println(fields[i][j].getText());
-			}
-		}
-	}
+		
+		//problem stand jetzt wir haben 2 verschiedene arrays, eines für die logik das andere für die gui, in der gui ist ein array von sudokufeldern und in der logik eines von cells
+		//stand jetzt kann man keine listener machen weil sich beim sudoku array nichts verändert sondern nur beim logik array, die änderungen werden dann immer manuell mit getvalue ins sudoku array reinkopiert
+		
+		
+//		for (int i = 0; i < 9; i++) {
+//			for (int j = 0; j < 9; j++) {
+//				System.out.println(fields[i][j].getText());
+//			}
+//		}
+//	}
 	
 		public void easyHandler(ActionEvent e) {
-			difficulty = 6;
+			difficulty = 100;
 		}
 		
 	public void mediumHandler(ActionEvent e) {
@@ -103,17 +115,12 @@ public class SudokuController {
 		
 				for (int x = 0; x < 9; x++) {
 					for (int y = 0; y < 9; y++) {
-				String number = Integer.toString(logic.getCells()[x][y].getValue());
+				String number = Integer.toString(logic.getCells()[y][x].getValue());
 					if(cellArray[x][y].getText().equals("0")) {
 						cellArray[x][y].setText(number);
 					
 				}
 			}
-		
-		
-	
-
-		
 	}
 	
 	}
@@ -121,6 +128,26 @@ public class SudokuController {
 	
 	
 	
+	public void autoSolveHandler(ActionEvent e) {
+		SudokuField[][] cellArray = scene.getBoard().getField();
+		
+		logic.autoSolve();
+		logic.printCells();
+		
+		logic.connectArrays(cellArray);
+		
+	}
+		
+		
+	public void checkHandler(ActionEvent e) {
+		SudokuField[][] cellArray = scene.getBoard().getField();
+		logic.autoSolve();
+		logic.compareResult(cellArray);
+	}
+		
+		
+		
+		
 	
 	
 	

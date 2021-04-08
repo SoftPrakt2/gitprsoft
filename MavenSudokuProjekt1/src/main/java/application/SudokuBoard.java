@@ -49,31 +49,27 @@ public class SudokuBoard extends GridPane {
 		
 //		logic.autofill();
 //		logic.fill();
-		for (int blockC = 0; blockC < 9; blockC++) {
-			for (int blockRow = 0; blockRow < 9; blockRow++) {
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
 				StackPane cell = new StackPane();
 				cell.getStyleClass().add("cell");
 
-			//	String selectedCell = "" + outputCells[((blockRow + 1) * 9) + blockC - 9].getGuess();
-//				if (selectedCell.equals("0")) {
-//					selectedCell = "";
-//				}
-						
-						//String i = Integer.toString(logic.cells[blockRow][blockC].getValue());
+
 					
 				SudokuField sudokuField = new SudokuField("0");
 				
-				textFields[blockC][blockRow] = sudokuField;
-				cell.pseudoClassStateChanged(right, blockC == 2 || blockC == 5);
+				textFields[i][j] = sudokuField;
+				cell.pseudoClassStateChanged(right, i == 2 || i == 5);
 
-				cell.pseudoClassStateChanged(bottom, blockRow == 2 || blockRow == 5);
+				cell.pseudoClassStateChanged(bottom, j == 2 || j == 5);
 				sudokuField.setStyle("-fx-pref-width: 2em;");
-				textFields[blockC][blockRow].setDisable(true);
+				textFields[i][j].setDisable(true);
 				cell.getChildren().add(sudokuField);
 
-				sudokuBoard.add(cell, blockC, blockRow);
+				sudokuBoard.add(cell, i, j);
 			}
 		}
+		textFields[3][4].setText("5");
 		sudokuBoard.setAlignment(Pos.CENTER);
 		sudokuBoard.add(new Line(0, 0, 0, 0), 1, 1);
 	}

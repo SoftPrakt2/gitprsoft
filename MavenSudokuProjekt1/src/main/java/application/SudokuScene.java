@@ -42,11 +42,11 @@ public class SudokuScene extends BasicGameScene {
 	    
 	   SudokuController controller = new SudokuController(this);
 	   
-	  play.setOnAction(controller::playHandler);
-	  manuel.setOnAction(controller::manuelHandler);
+	  create.setOnAction(controller::createGameHandler);
+	  play.setOnAction(controller::enableEditHandler);
 	  autosolve.setOnAction(controller::checkHandler);
 	  
-	 
+	 if(easy.isSelected()) SudokuController.difficulty = 6;
 	  easy.setOnAction(controller::easyHandler);
 	  medium.setOnAction(controller::mediumHandler);
 	  hard.setOnAction(controller::hardHandler);
@@ -54,7 +54,9 @@ public class SudokuScene extends BasicGameScene {
 	  newGame.setOnAction(controller::newGameHandler);
 	  
 	  save.setOnAction(controller::saveHandler);
-	    
+	  check.setOnAction(controller::checkHandler);
+	  autosolve.setOnAction(controller::autoSolveHandler);
+	  
 //	    manuel.setOnMouseClicked(e -> {
 //	    System.out.println("halo");
 //	    sudokuBoard.enableEdit();
