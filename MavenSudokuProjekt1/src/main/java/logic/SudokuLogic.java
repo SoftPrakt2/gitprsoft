@@ -62,7 +62,7 @@ public class SudokuLogic extends BasicGameLogic {
 		return true;
 	}
 
-	@Override
+//	@Override
 //	public boolean checkRowsUser() {
 //		String compare = "";
 //		for (int k = 1; k <= 9; k++) {
@@ -126,6 +126,7 @@ public class SudokuLogic extends BasicGameLogic {
 		int a;
 		int counter;
 		int globalCounter = 0;
+		int universalCounter = 0;
 		boolean isTrueOrFalse = false;
 		
 		for(int i = 0; i < this.cells.length; i++) {
@@ -134,6 +135,7 @@ public class SudokuLogic extends BasicGameLogic {
 				a = (int) (Math.random() * 9) + 1;
 				isTrueOrFalse = valid(i, j, a);
 				globalCounter++;
+				universalCounter++;
 				if(isTrueOrFalse) {
 					this.cells[i][j].setValue(a);
 				}
@@ -148,18 +150,25 @@ public class SudokuLogic extends BasicGameLogic {
 						}
 						if(counter == 100) {
 							for(int y = 0; y < cells[i].length; y++) {
-								this.cells[i][y].setValue(0);
+								this.cells[i][y].setValue(0);   //hier geändert1111111111111111111111111111111111111111
 							}
 							j = -1;
 							counter = 0;
 							break;
 						}
+						if(globalCounter == 5000) {
+							i = 0;
+							j = 0;
+							globalCounter = 0;
+							break;
+						}
 						globalCounter++;
+						universalCounter++;
 					}
 				}
 			}
 		}
-		System.out.println("Global Counter = " + globalCounter);	
+		System.out.println("Global Counter = " + universalCounter);	
 	}
 	
 	static int counter = 0;
@@ -303,7 +312,7 @@ public class SudokuLogic extends BasicGameLogic {
 	}
 
 	public void setCell(int col, int row, int guess) {
-		this.cells[col][row].setValue(guess);;
+		this.cells[col][row].setValue(guess);
 		this.cells[col][row].setIsReal(true);
 	}
 
@@ -338,7 +347,7 @@ public class SudokuLogic extends BasicGameLogic {
 		
 			for(int i = 0; i < sudokuField.length; i++) {
 				for(int j = 0; j < sudokuField[i].length;j++) {
-						if(!sudokuField[i][j].getText().equals(Integer.toString(cells[j][i].getValue())) && !sudokuField[i][j].getText().equals("0")) {
+						if(!sudokuField[i][j].getText().equals(Integer.toString(cells[j][i].getValue())) && !sudokuField[j][i].getText().equals("0")) {
 						sudokuField[i][j].setStyle("-fx-text-fill: red");
 						result = false;
 						}
@@ -348,6 +357,18 @@ public class SudokuLogic extends BasicGameLogic {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public boolean checkRowsUser() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean checkColsUser() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	

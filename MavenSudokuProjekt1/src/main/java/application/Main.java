@@ -1,5 +1,7 @@
 package application;
 	
+import java.util.stream.Stream;
+
 import javafx.application.Application;
 
 
@@ -17,7 +19,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -25,17 +27,21 @@ import javafx.stage.Stage;
 
 public class Main extends Application  {
 	
-	BorderPane pane;
+	BorderPane mainPane;
 	
-	static Stage window;
-	Button sudoku;
-	Button samurai;
-	Button freeform;
+  static Stage window;
+  
+  static Scene mainScene;
+	private Button sudoku;
+	private Button samurai;
+	private Button freeform;
+	
+	 SudokuGameBuilder sudokuBuilder;
+	 SamuraiGameBuilder samuraiBuilder;
+	 FreeFormGameBuilder freeFormBuilder;
 	
 	
 	
-	Scene freeformScene;
-	static Scene mainScene;
 	
 	ToggleButton hint;
 	
@@ -48,54 +54,56 @@ public class Main extends Application  {
 	
 	@Override
 	public void start(Stage scene) {
-		 pane = new BorderPane();
-		
-	
-		
+		mainPane = new BorderPane();
+		 
 		window = scene;
-		window.setTitle("Sudoku");
-		
-
-		 //knöpfe erste seite
-	    HBox buttonMenu = new HBox();
-	    sudoku = new Button("Suduku");
-		
-	    SudokuScene sudokuScene = new SudokuScene();
-	    sudoku.setOnAction(e ->  {
-	    	e.consume();
-	    	sudokuScene.display();
-	    });
-		samurai = new Button("Samurai");
-		
-		SamuraiScene samuraiScene = new SamuraiScene();
-		samurai.setOnAction(e -> samuraiScene.display());
-		
-		
-		
-		FreeFormScene freeformscene = new FreeFormScene();
-		freeform = new Button("Freeform");
-		freeform.setOnAction(e -> freeformscene.display());
-		
-		buttonMenu.setSpacing(210);
-		buttonMenu.getChildren().addAll(sudoku,samurai,freeform);
-		
-		
-		Label welcomeLabel = new Label("Welcome to our Sudoku Game, please choose a gamemode");
-		welcomeLabel.setFont(new Font("Arial",20));
-		
-		
-	
-		BorderPane borderPane = new BorderPane();
-		borderPane.setBottom(buttonMenu);
-		borderPane.setCenter(welcomeLabel);
-		
-		
-	
-		mainScene = new Scene(borderPane,600,600);
-		window.setScene(mainScene);
-		window.show();
-		
-		
+		 
+		 	HBox buttonMenu = new HBox();
+		    buttonMenu.setSpacing(145);
+			buttonMenu.setPrefWidth(100);
+		    
+		    sudoku = new Button("Sudoku");
+		    sudokuBuilder = new SudokuGameBuilder();
+		    Scene sceneSud = sudokuBuilder.initializeScene();
+		    sudoku.setOnAction(e -> window.setScene(sceneSud));
+		    
+		    
+		    
+			samurai = new Button("Samurai");
+			samuraiBuilder = new SamuraiGameBuilder();
+			Scene sceneSam = samuraiBuilder.initializeScene();
+			samurai.setOnAction(e -> window.setScene(sceneSam));
+			
+			
+			freeform = new Button("Freeform");
+			freeFormBuilder = new FreeFormGameBuilder();
+			Scene freeFormScene = freeFormBuilder.initializeScene();
+			freeform.setOnAction(e -> window.setScene(freeFormScene));
+			
+			
+			//design for buttons
+			 Stream.of(sudoku, samurai, freeform).forEach(button -> 
+			    button.getStyleClass().add("button1"));
+			
+			//größe der Buttons
+			 Stream.of(sudoku, samurai, freeform).forEach(button -> 
+			    button.setMinWidth(buttonMenu.getPrefWidth()));
+			 
+			buttonMenu.getChildren().addAll(sudoku,samurai,freeform);
+			
+			
+			Label welcomeLabel = new Label("Welcome to our Sudoku Game, please choose a gamemode");
+			welcomeLabel.setFont(new Font("Arial",20));
+			
+			mainPane.setBottom(buttonMenu);
+			mainPane.setCenter(welcomeLabel);
+			
+			mainScene = new Scene(mainPane,600,600);
+			window.setScene(mainScene);
+			window.show();
+			
+			
+			mainScene.getStylesheets().add("main/resources/CSS/sudoku.css");
 	
 	 
 	    window.setOnCloseRequest(e-> {
@@ -108,21 +116,21 @@ public class Main extends Application  {
 	    
 	   
 	    private void closeProgram() {
-	    	ConfirmBox c = new ConfirmBox();
+	    	CloseWindowStage c = new CloseWindowStage();
 			Boolean answer = c.showPopUp("Closing","Are you sure that you want to close the program?");
 			if(answer) window.close();
 			
 		}    
 	    
 	    
-	    public static  Stage getStage() {
+	    public static Stage getStage() {
 	    	return window;
 	    }
 	    
-	    
-	  public static Scene getScene() {
-		  return mainScene;
-	  }
+	    public static Scene getScene() {
+	    	return mainScene;
+	    }
+	
 	    
 	    
 	   

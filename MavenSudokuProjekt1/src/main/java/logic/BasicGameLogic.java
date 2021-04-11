@@ -52,6 +52,8 @@
 
 package logic;
 
+import application.SudokuField;
+
 public abstract class BasicGameLogic{
 
 	private Gamestate gamestate;
@@ -94,4 +96,12 @@ public abstract class BasicGameLogic{
 	public abstract void difficulty(int diff);
 	
 	public abstract void printCells();
+	
+	public abstract Cell[][] getCells();
+	
+	public abstract void connectArrays(SudokuField[][] sudokuField);
+	
+	public abstract boolean compareResult(SudokuField[][] sudokuField);
+	
+	
 }

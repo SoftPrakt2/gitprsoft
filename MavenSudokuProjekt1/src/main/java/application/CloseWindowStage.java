@@ -12,16 +12,15 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class ConfirmBox {
-	
+public class CloseWindowStage {
 	
 	
 	
 	//speichert antwort je nach dem welcher knopf gedrückt wird
 	 boolean answer;
-
+	
 		
-		public boolean showPopUp(String title, String message) {
+	 public boolean showPopUp(String title, String message) {
 			Stage window = new Stage();
 			
 			//kann hinteres windows nicht klicken
@@ -57,7 +56,6 @@ public class ConfirmBox {
 			
 			return answer;
 		}
-		
 		
 		
 		

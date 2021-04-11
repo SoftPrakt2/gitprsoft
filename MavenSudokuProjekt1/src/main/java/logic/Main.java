@@ -63,7 +63,7 @@ public class Main {
 		
 		
 //		test2.autofill();
-		test.manualSolve();
+		test.autoSolve();
 		test.printCells();
 	}
 }
