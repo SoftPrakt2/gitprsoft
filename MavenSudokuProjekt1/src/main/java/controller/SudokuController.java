@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import application.BasicGameBuilder;
 import application.FreeFormGameBuilder;
-import application.Main;
+import application.GUI;
 import application.SamuraiGameBuilder;
 import application.SudokuField;
 import application.SudokuGameBuilder;
@@ -15,12 +15,14 @@ import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import logic.BasicGameLogic;
 
 
-public class SudokuController implements BasicController {
+public class SudokuController extends BasicController {
 	
 	BasicGameBuilder scene;
+
 
 	int difficulty = 0;
 	BasicGameLogic model;
@@ -34,15 +36,15 @@ public class SudokuController implements BasicController {
 	
 	
 	
-	public void createGameHandler(ActionEvent e) {
+public void createGameHandler(ActionEvent e) {
 		
 		model.autofill();
 		model.fill();
 		model.difficulty(difficulty);
 		
-		int x = 0;
-		int y = 0;
-
+		
+		
+		
 		for (int i = 0; i < fields.length; i++) {
 			for (int j = 0; j < fields[i].length; j++) {
 				
@@ -145,10 +147,13 @@ public class SudokuController implements BasicController {
 
 	public void switchToSamurai(ActionEvent e) {
 		SamuraiGameBuilder sam = new SamuraiGameBuilder();
+		
 		Scene scene = sam.initializeScene();	
-		Main.getStage().setScene(scene);
+		GUI.getStage().setScene(scene);
 		
 	
+	//	
+		//Stage stage = (Stage)playBoard.getScene().getWindow();
 	}
 	
 	

@@ -48,7 +48,7 @@ public class FreeFormGameBuilder extends BasicGameBuilder {
 	    
 	    freeform.getStylesheets().add("main/resources/CSS/sudoku.css");
 	
-	    return freeform;
+	  return freeform;
 	}
 	
 

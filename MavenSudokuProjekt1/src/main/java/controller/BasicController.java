@@ -1,31 +1,38 @@
 package controller;
 
 import application.BasicGameBuilder;
+import application.GUI;
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
+import logic.BasicGameLogic;
 
-public interface BasicController {
+public abstract class BasicController {
+	
+
 
 	
-	public void createGameHandler(ActionEvent e);
+	public abstract void createGameHandler(ActionEvent e);
 	
-	public void enableEditHandler(ActionEvent e);
+	public abstract void enableEditHandler(ActionEvent e);
 	
-	public void easyHandler(ActionEvent e);
+	public abstract void easyHandler(ActionEvent e);
 	
-	public void mediumHandler(ActionEvent e);
+	public abstract void mediumHandler(ActionEvent e);
 	
-	public void hardHandler(ActionEvent e);
+	public abstract void hardHandler(ActionEvent e);
 	
-	public void newGameHandler(ActionEvent e);
+	public abstract void newGameHandler(ActionEvent e);
 	
-	public void checkHandler(ActionEvent e);
+	public abstract void checkHandler(ActionEvent e);
 	
-	public void saveHandler(ActionEvent e);
+	public abstract void saveHandler(ActionEvent e);
 	
-	public void autoSolveHandler(ActionEvent e);
+	public abstract void autoSolveHandler(ActionEvent e);
 	
-	public void switchToSamurai(ActionEvent e);
+	public abstract void switchToSamurai(ActionEvent e);
 	
-	public void switchToFreeForm(ActionEvent e);
+	public abstract void switchToFreeForm(ActionEvent e);
+	
+
 	
 }

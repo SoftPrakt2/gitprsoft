@@ -27,17 +27,14 @@ import logic.SudokuLogic;
 
 public class SudokuGameBuilder extends BasicGameBuilder {
 	
-	  BorderPane pane;
-	  Scene sudoku;
+	  BorderPane pane = new BorderPane();
+	  Scene sudoku = new Scene(pane,500,500);
 	  SudokuController controller;
 
 	
 	public Scene initializeScene() {
 		
-		pane = new BorderPane();
-		sudoku = new Scene(pane,500,500);
-
-	
+		
 	pane.setCenter(createBoard());
 		
 	   createPlayButtons(pane);
@@ -73,8 +70,8 @@ public class SudokuGameBuilder extends BasicGameBuilder {
 	  
 	  
 	  sudoku.getStylesheets().add("main/resources/CSS/sudoku.css");
-	  
 	  return sudoku;
+	 
 	}
 	
 	
@@ -129,7 +126,7 @@ public class SudokuGameBuilder extends BasicGameBuilder {
 
 	@Override
 	public Scene getScene() {
-		// TODO Auto-generated method stub
+		
 		return sudoku;
 	}
 			

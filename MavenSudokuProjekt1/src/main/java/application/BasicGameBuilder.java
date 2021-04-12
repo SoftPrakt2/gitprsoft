@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import com.sun.javafx.logging.Logger;
 import com.sun.javafx.logging.PlatformLogger.Level;
 
+import controller.BasicController;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -27,6 +28,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public abstract class BasicGameBuilder {
@@ -150,7 +152,10 @@ public void createMenuBar(BorderPane pane) {
 		saveMenu = new Menu("Savegame"); 
 		save = new MenuItem("Save");
 		load = new MenuItem("Load");
-		//load.setOnAction(e-> openFile());
+		
+		load.setOnAction(e-> openFile());
+		
+		
 		saveMenu.getItems().addAll(save,load);
 		menuBar.getMenus().add(saveMenu);
 		
@@ -202,31 +207,44 @@ public void createMenuBar(BorderPane pane) {
           
 }
 
+		VBox backMenu;
+		Button back;
+		
+		MainMenu mainmenu = new MainMenu();
 
 public void createBackButton(BorderPane pane) {
-	 VBox backMenu = new VBox();
-	    Button back = new Button("main menu");
+	 	backMenu = new VBox();
+	    back = new Button("Main menu");
 	 
-	    back.setOnAction(e -> Main.getStage().setScene(Main.getScene()));
+	//    back.setOnAction(e -> GUI.getStage().setScene(mainmenu.inizializeMainMenu()));
+	    back.setOnAction(e -> GUI.getStage().setScene(MainMenu.getMainMenu()));
 	    backMenu.getChildren().add(back);
 	    backMenu.setAlignment(Pos.CENTER);
 	    pane.setBottom(backMenu);
 	    back.getStyleClass().add("buttonmainmenu");
+	    
+	  
 }
 
+	
+
+	public Button getBackButton() {
+		return back;
+	}
 
 
 
 
-//public static File openFile() {
-//	FileChooser chooser = new FileChooser();
-//	chooser.setTitle("Choose a Sudoku");
-//	File defaultDirectory = new File("d:/sudoku");
-//	chooser.setInitialDirectory(defaultDirectory);
-//	File selectedFile = chooser.showOpenDialog(Main.getStage());
-//	
-//	return selectedFile;
-//}
+public File openFile() {
+	FileChooser chooser = new FileChooser();
+	chooser.setTitle("Choose a Sudoku");
+	File defaultDirectory = new File("d:/sudoku");
+	chooser.setInitialDirectory(defaultDirectory);
+	Stage window = GUI.getStage();
+	File selectedFile = chooser.showOpenDialog(window);
+	
+	return selectedFile;
+}
 
 public long getStartTime() {
 	return startTime;
