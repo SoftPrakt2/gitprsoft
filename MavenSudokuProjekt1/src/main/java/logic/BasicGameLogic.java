@@ -73,25 +73,16 @@ public abstract class BasicGameLogic{
 	public abstract boolean valid(int row, int col, int guess);
 	
 	
-	public boolean validUser(){
-		if (checkRowsUser() == true && checkColsUser() == true && checkBoxsUser() == true ) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+
 	
-	public abstract boolean checkRowsUser();
-	public abstract boolean checkColsUser();
-	public abstract boolean checkBoxsUser();
+
+	public abstract void setUpLogicArray();
 	
-	public abstract void autofill();
-	
-	public abstract void fill();
+	public abstract void createSudoku();
 	
 	public abstract void hint();
 	
-	public abstract boolean autoSolve();
+	public abstract boolean solveSudoku();
 	
 	public abstract void difficulty(int diff);
 	

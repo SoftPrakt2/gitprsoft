@@ -1,5 +1,7 @@
 package application;
 
+import controller.BasicController;
+import controller.SamuraiController;
 import javafx.css.PseudoClass;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,8 +19,9 @@ public class SamuraiGameBuilder extends BasicGameBuilder {
 	
 	 BorderPane pane;
 	 Scene samurai;
+	 BasicController controller;
 	
-	public Scene initializeScene() {
+	public void initializeScene() {
 		
 		pane = new BorderPane();
 		samurai = new Scene(pane,800,800);
@@ -29,15 +32,17 @@ public class SamuraiGameBuilder extends BasicGameBuilder {
 	    createMenuBar(pane);
 	    createBackButton(pane);
 	    
+	    controller = new SamuraiController(this);
 	    
+	    play.setOnAction(controller::createGameHandler);
 	    
-	    
+	    sudokuMode.setOnAction(controller::switchToSudoku);
 	    
 	    
 	    samuraiMode.setDisable(true);
 	    samurai.getStylesheets().add("main/resources/CSS/sudoku.css");
 	    
-	    return samurai;
+	   // return samurai;
 	}
 	
 
@@ -65,27 +70,23 @@ public class SamuraiGameBuilder extends BasicGameBuilder {
 				
 				StackPane cellEmpty = new StackPane();
 				cellEmpty.getStyleClass().add("hidden");
-				SudokuField empty = new SudokuField("0");
+				SudokuField empty = new SudokuField("-");
 				empty.setStyle("-fx-pref-width: 2em;");
 				cellEmpty.getChildren().add(empty);
+				cellEmpty.setDisable(true);
 				textFields[spalte][zeile] = empty;
 				
-			if((spalte == 9 || spalte == 10 || spalte ==11) && zeile < 6) {
+			if((spalte == 9 || spalte == 10 || spalte ==11) && (zeile < 6 || zeile > 14)) {
 				
 				playBoard.add(cellEmpty,spalte,zeile);
 				 
-			} else if((spalte == 9 || spalte == 10 || spalte ==11) && zeile > 14) {
-				
+			} else if((spalte <6 || spalte > 14) && (zeile ==9 || zeile == 10 || zeile == 11)) {
+
 				playBoard.add(cellEmpty,spalte,zeile);
-			} else if(spalte <6 && (zeile ==9 || zeile == 10 || zeile == 11)) {
-					
-				playBoard.add(cellEmpty,spalte,zeile);
-			} else if(spalte > 14 &&(zeile ==9 || zeile == 10 || zeile == 11)) {
-				
-				playBoard.add(cellEmpty,spalte,zeile);
+
 			} else {
 				
-				SudokuField sudokuField = new SudokuField("");
+				SudokuField sudokuField = new SudokuField("0");
 				textFields[spalte][zeile] = sudokuField;
 				
 				sudokuField.setDisable(true);
@@ -112,7 +113,7 @@ public class SamuraiGameBuilder extends BasicGameBuilder {
 	@Override
 	public SudokuField[][] getTextField() {
 		// TODO Auto-generated method stub
-		return null;
+		return textFields;
 	}
 
 

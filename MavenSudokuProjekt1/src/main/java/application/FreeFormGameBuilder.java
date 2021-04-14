@@ -28,7 +28,7 @@ public class FreeFormGameBuilder extends BasicGameBuilder {
 	 static ToggleButton hint;
 	
 	
-		public Scene initializeScene() {
+		public void initializeScene() {
 		
 		pane = new BorderPane();
 		freeform = new Scene(pane,500,500);
@@ -48,7 +48,7 @@ public class FreeFormGameBuilder extends BasicGameBuilder {
 	    
 	    freeform.getStylesheets().add("main/resources/CSS/sudoku.css");
 	
-	  return freeform;
+	//  return freeform;
 	}
 	
 

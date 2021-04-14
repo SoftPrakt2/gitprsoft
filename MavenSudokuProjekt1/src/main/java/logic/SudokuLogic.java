@@ -62,67 +62,9 @@ public class SudokuLogic extends BasicGameLogic {
 		return true;
 	}
 
-//	@Override
-//	public boolean checkRowsUser() {
-//		String compare = "";
-//		for (int k = 1; k <= 9; k++) {
-//			for (int i = 0; i < this.cells.length; i++) {
-//				int rowRow = this.cells[i].getRow();
-//				if (rowRow == k && this.cells[i].getGuess() != 0) {
-//					if (compare.contains("" + this.cells[i].getGuess())) {
-//
-//						return false;
-//					} else {
-//						compare = compare + "" + this.cells[i].getGuess();
-//					}
-//				}
-//			}
-//			compare = "";
-//		}
-	//	return true;
-//	}
 
-	@Override
-	public boolean checkBoxsUser() {
-//		String compare = "";
-//		for (int k = 1; k <= 9; k++) {
-//			for (int i = 0; i < this.cells.length; i++) {
-//				int rowBox = this.cells[i].getBox();
-//				if (rowBox == k && this.cells[i].getGuess() != 0) {
-//					if (compare.contains("" + this.cells[i].getGuess())) {
-//
-//						return false;
-//					} else {
-//						compare = compare + "" + this.cells[i].getGuess();
-//					}
-//				}
-//			}
-//			compare = "";
-//		}
-		return true;
-	}
-
-	@Override
-	//public boolean checkColsUser() {
-//		String compare = "";
-//		for (int k = 1; k <= 9; k++) {
-//			for (int i = 0; i < this.cells.length; i++) {
-//				int colCol = this.cells[i].getCol();
-//				if (colCol == k && this.cells[i].getGuess() != 0) {
-//					if (compare.contains("" + this.cells[i].getGuess())) {
-//
-//						return false;
-//					} else {
-//						compare = compare + "" + this.cells[i].getGuess();
-//					}
-//				}
-//			}
-//			compare = "";
-//		}
-//		return true;
-//	}
 	//erstellt generell sudoku spiel mit richtigen ziffern
-	public void fill() {
+	public void createSudoku() {
 		int a;
 		int counter;
 		int globalCounter = 0;
@@ -174,7 +116,7 @@ public class SudokuLogic extends BasicGameLogic {
 	static int counter = 0;
 	
 	//löst restliches sudoku automatisch
-	public boolean autoSolve() {	
+	public boolean solveSudoku() {	
 		for(int i = 0; i < this.cells.length; i++) {
 			for(int j = 0; j < this.cells[i].length; j++) {
 				if(this.cells[i][j].getValue() == 0) {
@@ -182,7 +124,7 @@ public class SudokuLogic extends BasicGameLogic {
 						counter++;
 						if(valid(i, j, y + 1)) {
 							this.cells[i][j].setValue(y + 1);
-							if(autoSolve() == true) {
+							if(solveSudoku()) {
 								return true;
 							}
 							else {
@@ -219,15 +161,10 @@ public class SudokuLogic extends BasicGameLogic {
 		}
 	}
 
-//	@Override
-//	public void autosolve() {
-//		for (int i = 0; i < 81; i++) {
-//			this.cells[i].setGuess(this.cells[i].getValue());
-//		}
-//	}
+
 
 	@Override
-	public void autofill() {		
+	public void setUpLogicArray() {		
 		int a = 0;
 		int b = 0;
 		int c = 0;
@@ -275,29 +212,6 @@ public class SudokuLogic extends BasicGameLogic {
 	}
 
 	public void difficulty(int diff) {
-//		double effect = 0;
-//		if (diff == 0) {
-//			effect = 0.9;
-//		}
-//		if (diff == 1) {
-//			effect = 0.7;
-//		}
-//		if (diff == 2) {
-//			effect = 0.5;
-//		}
-//		if (diff == 3) {
-//			effect = 0.3;
-//		}
-//		if (diff > 3) {
-//			effect = 0.2;
-//		}
-//
-//		for (int i = 0; i < this.cells.length; i++) {
-//			if (Math.random() < effect) {
-//				int makeVisible = this.cells[i].getValue();
-//				this.cells[i].setGuess(makeVisible);
-//			}
-//		}
 		
 		for(int i = 0; i < this.cells.length;i++) {
 			for(int j = 0; j < this.cells[i].length;j++) {
@@ -343,14 +257,16 @@ public class SudokuLogic extends BasicGameLogic {
 	
 	public boolean compareResult(SudokuField[][] sudokuField) {
 			boolean result = true;
-			this.autoSolve();
+			this.solveSudoku();
 		
 			for(int i = 0; i < sudokuField.length; i++) {
 				for(int j = 0; j < sudokuField[i].length;j++) {
-						if(!sudokuField[i][j].getText().equals(Integer.toString(cells[j][i].getValue())) && !sudokuField[j][i].getText().equals("0")) {
+						if(!sudokuField[i][j].getText().equals(Integer.toString(cells[j][i].getValue())) && !sudokuField[i][j].getText().equals("0")) {
 						sudokuField[i][j].setStyle("-fx-text-fill: red");
 						result = false;
-						}
+						}else if (sudokuField[i][j].getText().equals("0"))
+							{sudokuField[i][j].setStyle("-fx-text-fill: black");
+							}
 						else {
 							sudokuField[i][j].setStyle("-fx-text-fill: green");
 						}
@@ -359,35 +275,5 @@ public class SudokuLogic extends BasicGameLogic {
 		return result;
 	}
 
-	@Override
-	public boolean checkRowsUser() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
-	@Override
-	public boolean checkColsUser() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

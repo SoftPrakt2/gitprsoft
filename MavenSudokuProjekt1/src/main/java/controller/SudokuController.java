@@ -17,6 +17,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import logic.BasicGameLogic;
+import logic.Gamestate;
+import logic.SudokuLogic;
 
 
 public class SudokuController extends BasicController {
@@ -28,9 +30,9 @@ public class SudokuController extends BasicController {
 	BasicGameLogic model;
 	SudokuField[][] fields;
 	
-	public SudokuController(BasicGameBuilder scene, BasicGameLogic model) {
+	public SudokuController(BasicGameBuilder scene) {
 		this.scene = scene;
-		this.model = model;
+		this.model = new SudokuLogic(Gamestate.OPEN,0.0,false);
 		fields = scene.getTextField();
 	}
 	
@@ -38,8 +40,9 @@ public class SudokuController extends BasicController {
 	
 public void createGameHandler(ActionEvent e) {
 		
-		model.autofill();
-		model.fill();
+		System.out.println("hello");
+		model.setUpLogicArray();
+		model.createSudoku();
 		model.difficulty(difficulty);
 		
 		
@@ -61,7 +64,7 @@ public void createGameHandler(ActionEvent e) {
 		
 		}
 		
-		//model.autoSolve();
+		model.solveSudoku();
 		model.printCells();
 	}
 	
@@ -101,8 +104,8 @@ public void createGameHandler(ActionEvent e) {
 			}
 		}
 				
-		model.autofill();
-		model.fill();
+		model.setUpLogicArray();
+		model.createSudoku();
 		model.difficulty(difficulty);
 		
 				for (int x = 0; x < 9; x++) {
@@ -122,14 +125,14 @@ public void createGameHandler(ActionEvent e) {
 	
 	
 	public void autoSolveHandler(ActionEvent e) {
-		model.autoSolve();
+		model.solveSudoku();
 		model.printCells();
 		model.connectArrays(fields);
 		
 	}
 		
 	public void checkHandler(ActionEvent e) {
-		model.autoSolve();
+		model.solveSudoku();
 		model.compareResult(fields);
 	}	
 	
@@ -145,24 +148,7 @@ public void createGameHandler(ActionEvent e) {
 	
 	
 
-	public void switchToSamurai(ActionEvent e) {
-		SamuraiGameBuilder sam = new SamuraiGameBuilder();
-		
-		Scene scene = sam.initializeScene();	
-		GUI.getStage().setScene(scene);
-		
 	
-	//	
-		//Stage stage = (Stage)playBoard.getScene().getWindow();
-	}
-	
-	
-	
-	
-	public void switchToFreeForm(ActionEvent e) {
-	
-		
-	}
 	
 	
 	

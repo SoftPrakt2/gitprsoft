@@ -7,7 +7,7 @@ public class Main {
 		SudokuLogic test = new SudokuLogic(Gamestate.OPEN, 0.0, false);
 		SudokuLogic test2 = new SudokuLogic(Gamestate.OPEN, 0.0, false);
 		
-		test.autofill();
+		test.createSudoku();
 		test.printCells();
 		
 //		x.setCell(int col, int row, int guess);

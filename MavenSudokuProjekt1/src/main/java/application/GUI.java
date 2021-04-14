@@ -41,7 +41,7 @@ public class GUI extends Application  {
 		 
 		window = scene;
 		 
-		 window.setScene(new MainMenu().inizializeMainMenu());	
+		 window.setScene(new MainMenu().setUpMainMenu());	
 		 
 		 window.show();
 	

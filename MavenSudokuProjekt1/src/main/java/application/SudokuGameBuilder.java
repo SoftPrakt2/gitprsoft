@@ -1,5 +1,6 @@
 package application;
 
+import controller.BasicController;
 import controller.SudokuController;
 import javafx.application.Application;
 import javafx.css.PseudoClass;
@@ -29,10 +30,10 @@ public class SudokuGameBuilder extends BasicGameBuilder {
 	
 	  BorderPane pane = new BorderPane();
 	  Scene sudoku = new Scene(pane,500,500);
-	  SudokuController controller;
+	  BasicController controller;
 
 	
-	public Scene initializeScene() {
+	public void initializeScene() {
 		
 		
 	pane.setCenter(createBoard());
@@ -41,13 +42,14 @@ public class SudokuGameBuilder extends BasicGameBuilder {
 	   createMenuBar(pane);
 	   createBackButton(pane);
 	   
-	  controller = new SudokuController(this, new SudokuLogic(Gamestate.OPEN,0.0,false));
+	  controller = new SudokuController(this);
 	   
 	  create.setOnAction(controller::createGameHandler);
+	  
 	  play.setOnAction(controller::enableEditHandler);
 	  autosolve.setOnAction(controller::checkHandler);
 	  
-	 if(easy.isSelected()) controller.setDifficulty(6);
+	// if(easy.isSelected()) controller.setDifficulty(6);
 	  easy.setOnAction(controller::easyHandler);
 	  medium.setOnAction(controller::mediumHandler);
 	  hard.setOnAction(controller::hardHandler);
@@ -70,7 +72,7 @@ public class SudokuGameBuilder extends BasicGameBuilder {
 	  
 	  
 	  sudoku.getStylesheets().add("main/resources/CSS/sudoku.css");
-	  return sudoku;
+	//  return sudoku;
 	 
 	}
 	
@@ -126,7 +128,6 @@ public class SudokuGameBuilder extends BasicGameBuilder {
 
 	@Override
 	public Scene getScene() {
-		
 		return sudoku;
 	}
 			

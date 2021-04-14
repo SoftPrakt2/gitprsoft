@@ -24,30 +24,35 @@ public class MainMenuController {
 	
 	
 	MainMenu menu;
-	SudokuGameBuilder sudokuGame = new SudokuGameBuilder();
-	SamuraiGameBuilder samuraiGame = new SamuraiGameBuilder();
-	FreeFormGameBuilder freeFormGame = new FreeFormGameBuilder();
+	BasicGameBuilder sudokuGame = new SudokuGameBuilder();
+	BasicGameBuilder samuraiGame = new SamuraiGameBuilder();
+	BasicGameBuilder freeFormGame = new FreeFormGameBuilder();
+	
 	
 	public MainMenuController(MainMenu menu) {
 		this.menu = menu;
+		sudokuGame.initializeScene();
+		samuraiGame.initializeScene();
+		freeFormGame.initializeScene();
 	}
 	
 	
 	public void handleToSudoku(ActionEvent e) {
 		
-		GUI.getStage().setScene(sudokuGame.initializeScene());
+		
+		GUI.getStage().setScene(sudokuGame.getScene());
 	
 	}
 	
 	public void handleToSamurai(ActionEvent e) {
-		Scene scene = samuraiGame.initializeScene();
-		GUI.getStage().setScene(scene);
+		
+		GUI.getStage().setScene(samuraiGame.getScene());
 	
 	}
 	
 	public void handleToFreeForm(ActionEvent e) {
-		Scene scene = freeFormGame.initializeScene();
-		GUI.getStage().setScene(scene);
+		
+		GUI.getStage().setScene(freeFormGame.getScene());
 	}
 	
 	

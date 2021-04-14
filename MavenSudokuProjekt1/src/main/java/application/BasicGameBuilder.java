@@ -51,7 +51,7 @@ public abstract class BasicGameBuilder {
 	  
 	  
 	  //change back to void
-	  public abstract Scene initializeScene();
+	  public abstract void initializeScene();
 	 
 	 
 	 //vielleicht besser in den gamebuilderklassen direkt die boards zu zeichnen?

@@ -20,7 +20,7 @@ public class MainMenu {
 	private Button freeform;
 	
 	
-	public Scene inizializeMainMenu() {
+	public Scene setUpMainMenu() {
 		
 		
 		HBox buttonMenu = new HBox();
