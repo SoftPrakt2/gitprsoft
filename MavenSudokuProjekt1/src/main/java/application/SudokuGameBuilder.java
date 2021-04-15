@@ -49,7 +49,7 @@ public class SudokuGameBuilder extends BasicGameBuilder {
 	  play.setOnAction(controller::enableEditHandler);
 	  autosolve.setOnAction(controller::checkHandler);
 	  
-	// if(easy.isSelected()) controller.setDifficulty(6);
+	/// if(easy.isSelected()) controller.setDifficulty(6);
 	  easy.setOnAction(controller::easyHandler);
 	  medium.setOnAction(controller::mediumHandler);
 	  hard.setOnAction(controller::hardHandler);
