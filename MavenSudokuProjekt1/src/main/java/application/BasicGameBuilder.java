@@ -198,7 +198,7 @@ public void createMenuBar(BorderPane pane) {
 		
 		changeGameMode = new Menu("Change Mode");
 		sudokuMode = new MenuItem("Sudoku Mode");
-		samuraiMode = new MenuItem("Samura Mode");
+		samuraiMode = new MenuItem("Samurai Mode");
 		freeFormMode = new MenuItem("FreeForm Mode");
 		changeGameMode.getItems().addAll(sudokuMode,samuraiMode,freeFormMode);
 		menuBar.getMenus().add(changeGameMode);
