@@ -57,7 +57,7 @@ public class GUI extends Application  {
 	   
 	    private void closeProgram() {
 	    	CloseWindowStage c = new CloseWindowStage();
-			Boolean answer = c.showPopUp("Closing","Are you sure that you want to close the program?");
+			Boolean answer = c.showPopUp("Closing","are you sure that you want to close the program?");
 			if(answer) window.close();
 			
 		}    
