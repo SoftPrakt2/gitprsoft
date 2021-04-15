@@ -53,7 +53,7 @@ public class GUI extends Application  {
 		});
 	    
 	}
-	    
+	    //this is test
 	   
 	    private void closeProgram() {
 	    	CloseWindowStage c = new CloseWindowStage();
