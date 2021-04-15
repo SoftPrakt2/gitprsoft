@@ -22,4 +22,4 @@ workflows:
     jobs:
       - maven/test
       - build:
-          contecxt: SonarCloud
+          context: SonarCloud
