@@ -21,7 +21,7 @@ public class Main {
 		test.setCell(1, 5, 1);
 		test.setCell(1, 8, 4);
 		
-		test.setCell(2, 0, 4);
+	//	test.setCell(2, 0, 4);
 		test.setCell(2, 4, 2);
 		test.setCell(2, 8, 8);
 		
